@@ -1,0 +1,12 @@
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\bin\Debug\net6.0\BookAuthorCRUD.Application.deps.json
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\bin\Debug\net6.0\BookAuthorCRUD.Application.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\bin\Debug\net6.0\BookAuthorCRUD.Application.pdb
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.csproj.AssemblyReference.cache
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.AssemblyInfoInputs.cache
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.AssemblyInfo.cs
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\refint\BookAuthorCRUD.Application.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\BookAuthorCRUD.Application.pdb
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD.Application\obj\Debug\net6.0\ref\BookAuthorCRUD.Application.dll

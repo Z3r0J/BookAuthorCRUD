@@ -1,4 +1,4 @@
-namespace BookAuthorCRUD
+namespace BookAuthorCRUD.API
 {
     public class WeatherForecast
     {

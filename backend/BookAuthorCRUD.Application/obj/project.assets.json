@@ -1,0 +1,115 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "BookAuthorCRUD.Contract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BookAuthorCRUD.Contract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookAuthorCRUD.Contract.dll": {}
+        }
+      },
+      "BookAuthorCRUD.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BookAuthorCRUD.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookAuthorCRUD.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BookAuthorCRUD.Contract/1.0.0": {
+      "type": "project",
+      "path": "../BookAuthorCRUD.Contract/BookAuthorCRUD.Contract.csproj",
+      "msbuildProject": "../BookAuthorCRUD.Contract/BookAuthorCRUD.Contract.csproj"
+    },
+    "BookAuthorCRUD.Domain/1.0.0": {
+      "type": "project",
+      "path": "../BookAuthorCRUD.Domain/BookAuthorCRUD.Domain.csproj",
+      "msbuildProject": "../BookAuthorCRUD.Domain/BookAuthorCRUD.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "BookAuthorCRUD.Contract >= 1.0.0",
+      "BookAuthorCRUD.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Application\\BookAuthorCRUD.Application.csproj",
+      "projectName": "BookAuthorCRUD.Application",
+      "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Application\\BookAuthorCRUD.Application.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Application\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Contract\\BookAuthorCRUD.Contract.csproj": {
+              "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Contract\\BookAuthorCRUD.Contract.csproj"
+            },
+            "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Domain\\BookAuthorCRUD.Domain.csproj": {
+              "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Domain\\BookAuthorCRUD.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

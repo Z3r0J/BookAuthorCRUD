@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2y1XV53T7xKqchVP+XU5Ti1rLsRlbMtK9yys9p8Y7EpFJNxO2NKDki/gEhZXg4YXfNmecTDnh4ZiO/2Z5mh2DA==",
+  "dgSpecHash": "m4WVfBiOHZAC0uIH5Or8jCAYfSuL3NZYvLKDaq6u5L6LapX5YfdWjsQeby/it83iDK0RHIWGlskzxYvSvJHmlw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD\\BookAuthorCRUD\\BookAuthorCRUD.csproj",
+  "projectFilePath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD\\BookAuthorCRUD.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
