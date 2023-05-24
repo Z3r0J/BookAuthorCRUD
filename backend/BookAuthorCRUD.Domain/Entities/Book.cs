@@ -17,9 +17,12 @@ namespace BookAuthorCRUD.Domain.Entities
         public Genre Genre { get; private set; } = new();
 
         public Guid AuthorId { get; private set; } = Guid.Empty;
-        public Author Author { get; private set; } = new();
+        public BookAuthor Author { get; private set; } = new();
 
-        public Book(string title, string sypnosis,DateTime releaseDate, string publisher, Guid genreId, Guid authorId,Author? author, Genre? genre)
+
+        public Book() { }
+
+        public Book(string title, string sypnosis,DateTime releaseDate, string publisher, Guid genreId, Guid authorId,BookAuthor? author, Genre? genre)
         {
             Title= title;
             Sypnosis= sypnosis;
@@ -27,7 +30,7 @@ namespace BookAuthorCRUD.Domain.Entities
             Publisher= publisher;
             GenreId = genreId;
             AuthorId= authorId;
-            Author = author??new Author();
+            Author = author??new BookAuthor();
             Genre = genre ?? new Genre();
         }
 
