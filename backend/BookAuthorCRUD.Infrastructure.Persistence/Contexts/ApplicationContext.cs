@@ -19,22 +19,7 @@ namespace BookAuthorCRUD.Infrastructure.Persistence.Contexts
         public DbSet<Genre> Genres { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())
-            {
-                _ = entry.State switch
-                {
-                    EntityState.Modified => () => entry.Entity.UpdatedAt = DateTime.UtcNow,
-                    EntityState.Added => () => entry.Entity.CreatedAt = DateTime.UtcNow,
-
-                    _ => new Action(() => { })
-                };
-            }
-
-            return base.SaveChangesAsync(cancellationToken);
-        }
-
+        //Fluent API
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region Tables and Primary Key
@@ -49,37 +34,59 @@ namespace BookAuthorCRUD.Infrastructure.Persistence.Contexts
                 .Entity<Book>()
                 .HasMany(x => x.Authors)
                 .WithOne(x => x.Book)
-                .HasForeignKey(x => x.BookId);
+                .HasForeignKey(x => x.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
             builder
                 .Entity<Author>()
                 .HasMany(x => x.Books)
                 .WithOne(x => x.Author)
-                .HasForeignKey(x => x.AuthorId);
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+            ;
             builder
                 .Entity<Genre>()
                 .HasMany(x => x.Books)
                 .WithOne(x => x.Genre)
-                .HasForeignKey(x => x.GenreId);
+                .HasForeignKey(x => x.GenreId)
+                .OnDelete(DeleteBehavior.Cascade);
+            ;
             #endregion
 
             #region Properties
 
             #region Book Property
 
-            builder.Entity<Book>().Property(x => x.Sypnosis).HasColumnName("Sypnosis").IsRequired();
+            builder.Entity<Book>().Property(x => x.Sypnosis).IsRequired();
+            builder
+                .Entity<Book>()
+                .Property(x => x.Publisher)
+                .HasColumnName("PublishedBy")
+                .IsRequired();
+            builder
+                .Entity<Book>()
+                .Property(x => x.ReleaseDate)
+                .HasColumnName("ReleaseOn")
+                .IsRequired();
+
+            #endregion
+
+            #region Author
+
+            builder.Entity<Author>().Property(x => x.Address).IsRequired();
+            builder.Entity<Author>().Property(x => x.Email).IsRequired();
+            builder.Entity<Author>().Property(x => x.FirstName).IsRequired();
+            builder.Entity<Author>().Property(x => x.LastName).IsRequired();
+            builder.Entity<Author>().Property(x => x.BirthDate).IsRequired();
+
+            #endregion
+
+            #region Genre
+
+            builder.Entity<Genre>().Property(x => x.Name).IsRequired();
 
             #endregion
 
             #endregion
-
-
-            #region Set Value through the Constructor
-
-            builder.Entity<Book>().
-
-
-            #endregion
-
 
             base.OnModelCreating(builder);
         }

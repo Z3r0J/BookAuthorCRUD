@@ -11,7 +11,7 @@ namespace BookAuthorCRUD.Domain.Entities
         public DateTime ReleaseDate { get; private set; } = DateTime.UtcNow;
         public string Publisher { get; private set; } = string.Empty;
         public Guid GenreId { get; private set; } = Guid.Empty;
-        public Genre Genre { get; private set; } = new();
+        public Genre Genre { get; private set; }
         public IReadOnlyCollection<BookAuthor> Authors => _bookAuthors;
 
         private Book(

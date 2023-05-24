@@ -17,8 +17,4 @@
     <ProjectReference Include="..\BookAuthorCRUD.Domain\BookAuthorCRUD.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UnitOfWork\" />
-  </ItemGroup>
-
 </Project>
