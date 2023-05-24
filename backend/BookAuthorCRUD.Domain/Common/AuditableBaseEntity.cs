@@ -9,8 +9,8 @@ namespace BookAuthorCRUD.Domain.Common
 {
     public abstract class AuditableBaseEntity
     {
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; private set;} = DateTime.UtcNow;
+        public Guid Id { get; internal set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set;} = DateTime.UtcNow;
     }
 }

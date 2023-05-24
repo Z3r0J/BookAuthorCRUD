@@ -9,17 +9,32 @@ namespace BookAuthorCRUD.Domain.Entities
 {
     public sealed class Genre : AuditableBaseEntity
     {
+        private readonly List<Book> _books = new();
         public string Name { get; private set; } = string.Empty;
-        public ICollection<Book> Books { get; private set; } = new List<Book>();
+        public IReadOnlyCollection<Book> Books => _books;
 
-        public Genre() { }
-
-        public Genre(string name, ICollection<Book>? books)
+        private Genre(Guid id,string name)
         {
+            Id = id;
             Name = name;
-            Books = books ?? new List<Book>();
         }
 
+        public static Genre Create(Guid id, string name)
+        {
+            var genre = new Genre(id, name);
+
+            return genre;
+        }
+
+        public void Update(string name)
+        {
+            Name = name;
+        }
+
+        public void AddBooks(Book book)
+        {
+            _books.Add(book);
+        }
 
     }
 }
