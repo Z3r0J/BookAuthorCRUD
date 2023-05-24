@@ -57,6 +57,7 @@ namespace BookAuthorCRUD.Infrastructure.Persistence.Contexts
             #region Book Property
 
             builder.Entity<Book>().Property(x => x.Sypnosis).IsRequired();
+            builder.Entity<Book>().Property(x => x.Sypnosis).HasColumnType("text");
             builder
                 .Entity<Book>()
                 .Property(x => x.Publisher)
@@ -74,8 +75,12 @@ namespace BookAuthorCRUD.Infrastructure.Persistence.Contexts
 
             builder.Entity<Author>().Property(x => x.Address).IsRequired();
             builder.Entity<Author>().Property(x => x.Email).IsRequired();
+            builder.Entity<Author>().Property(x => x.Email).HasMaxLength(150);
+            builder.Entity<Author>().HasIndex(x => x.Email).IsUnique();
             builder.Entity<Author>().Property(x => x.FirstName).IsRequired();
+            builder.Entity<Author>().Property(x => x.FirstName).HasMaxLength(85);
             builder.Entity<Author>().Property(x => x.LastName).IsRequired();
+            builder.Entity<Author>().Property(x => x.LastName).HasMaxLength(95);
             builder.Entity<Author>().Property(x => x.BirthDate).IsRequired();
 
             #endregion

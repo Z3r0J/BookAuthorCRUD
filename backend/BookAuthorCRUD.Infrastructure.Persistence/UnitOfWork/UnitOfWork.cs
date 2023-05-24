@@ -1,10 +1,11 @@
 ﻿using BookAuthorCRUD.Domain.Common;
+using BookAuthorCRUD.Domain.Interfaces;
 using BookAuthorCRUD.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookAuthorCRUD.Infrastructure.Persistence.UnitOfWork
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext _context;
         public UnitOfWork(ApplicationContext context) { 
