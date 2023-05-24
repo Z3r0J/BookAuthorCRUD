@@ -1,4 +1,6 @@
-﻿using BookAuthorCRUD.Infrastructure.Persistence.Contexts;
+﻿using BookAuthorCRUD.Domain.Interfaces;
+using BookAuthorCRUD.Infrastructure.Persistence.Contexts;
+using BookAuthorCRUD.Infrastructure.Persistence.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,13 @@ namespace BookAuthorCRUD.Infrastructure.Persistence
             );
 
             #endregion
+
+            #region Unit Of Work
+
+            services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
+
+            #endregion
+
         }
     }
 }
