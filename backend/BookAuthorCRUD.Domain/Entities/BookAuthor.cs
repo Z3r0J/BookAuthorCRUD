@@ -7,25 +7,31 @@ using System.Threading.Tasks;
 
 namespace BookAuthorCRUD.Domain.Entities
 {
-    public class BookAuthor: AuditableBaseEntity
+    public class BookAuthor : AuditableBaseEntity
     {
         public Guid AuthorId { get; private set; } = Guid.Empty;
-        public Author Author { get; private set; } = new Author();
+        public Author Author { get; private set; }
 
         public Guid BookId { get; private set; } = Guid.Empty;
-        public Book Book { get; private set; } = new Book();
+        public Book Book { get; private set; }
 
-        public BookAuthor()
-        {
-
-        }
-
-        public BookAuthor(Guid authorId, Guid bookId, Author? author,Book? book)
+        private BookAuthor(Guid authorId, Guid bookId)
         {
             AuthorId = authorId;
-            Author = author ?? new();
             BookId = bookId;
-            Book = book?? new();
+        }
+
+        public static BookAuthor Create(Guid authorId, Guid bookId)
+        {
+            var bookAuthor = new BookAuthor(authorId, bookId);
+
+            return bookAuthor;
+        }
+
+        public void Update(Guid authorId, Guid bookId)
+        {
+            AuthorId = authorId;
+            BookId = bookId;
         }
     }
 }
