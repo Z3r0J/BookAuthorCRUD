@@ -29,11 +29,16 @@ public class BookRepository : IBookRepository
             .Include(x => x.Authors)
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
+            .AsNoTracking()
             .ToListAsync(cancellationToken);
 
     public async Task<Book?> GetById(Guid id, CancellationToken cancellationToken = default) =>
         await _applicationContext
             .Set<Book>()
+            .Include(x => x.Authors)
+            .ThenInclude(x => x.Author)
+            .Include(x => x.Genre)
+            .AsNoTracking()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Book book) => _applicationContext.Set<Book>().Update(book);

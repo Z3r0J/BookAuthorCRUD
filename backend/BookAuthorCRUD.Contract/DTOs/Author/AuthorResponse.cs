@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookAuthorCRUD.Contract.DTOs.Book;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,5 @@ public record AuthorResponse(
     string Address,
     string Email,
     DateTime BirthDate,
-    List<Book> Books
+    List<BookResponse> Books
 );

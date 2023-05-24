@@ -9,7 +9,7 @@ namespace BookAuthorCRUD.Infrastructure.Persistence
 {
     public static class ServicesRegister
     {
-        public static void AddPersistence(
+        public static IServiceCollection AddPersistence(
             this IServiceCollection services,
             IConfiguration configuration
         )
@@ -36,6 +36,8 @@ namespace BookAuthorCRUD.Infrastructure.Persistence
             services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
 
             #endregion
+
+            return services;
 
         }
     }
