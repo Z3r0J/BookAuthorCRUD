@@ -1,7 +1,15 @@
-﻿namespace BookAuthorCRUD.Contract
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace BookAuthorCRUD.Contract
 {
-    public class Class1
+    public static class ServiceRegistration
     {
+
+        public static void AddContractServices(this IServiceCollection services)
+        {
+            services.AddValidatorsFromAssembly(typeof(ServiceRegistration).Assembly,ServiceLifetime.Scoped);
+        }
 
     }
 }
