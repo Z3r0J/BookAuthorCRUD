@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "bXqzcMM3vgzbPa5wiR7NmoBHvtphNeTSbHcUIqNW4j75421QTOQnUG+3a4Thpv7dC7UFfDrg6BAOABq2x5PDfA==",
+  "dgSpecHash": "YUoGInUaJGseFoZWzrevFUGZAZBAnDQWhiUlYIouWmWYjydLGAcNWiu0XvyeZsbmpryXxx4o4J03WV2PpSZBGg==",
   "success": true,
   "projectFilePath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Application\\BookAuthorCRUD.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.2\\fluentvalidation.dependencyinjectionextensions.11.5.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.0\\microsoft.extensions.configuration.binder.7.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",

@@ -16,5 +16,5 @@ public record BookResponse(
     string Publisher,
     Guid GenreId,
     GenreResponse Genre,
-    List<AuthorResponse> Authors
+    List<AuthorResponse>? Authors
 );

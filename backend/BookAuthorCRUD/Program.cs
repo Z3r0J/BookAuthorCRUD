@@ -1,11 +1,17 @@
+using BookAuthorCRUD.Application;
+using BookAuthorCRUD.Contract;
+using BookAuthorCRUD.Infrastructure.Persistence;
+using BookAuthorCRUD.Infrastructure.Persistence.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddContractServices();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

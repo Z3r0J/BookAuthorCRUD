@@ -64,5 +64,10 @@ namespace BookAuthorCRUD.Domain.Entities
         {
             _bookAuthors.Add(bookAuthor);
         }
+
+        public void RemoveAuthor()
+        {
+            _bookAuthors.ForEach(x => _bookAuthors.Remove(x));
+        }
     }
 }
