@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Author;
-using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Domain.Entities;
 using BookAuthorCRUD.Domain.Interfaces;
+using FluentValidation;
+using LanguageExt.Common;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -12,16 +13,27 @@ public class AuthorService : IAuthorService
     private readonly IAuthorRepository _authorRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IValidator<AuthorRequest> _authorValidator;
 
-    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<AuthorRequest> authorValidator)
     {
         _authorRepository = authorRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _authorValidator = authorValidator;
     }
 
-    public async Task<AuthorResponse> Add(AuthorRequest authorRequest)
+    public async Task<Result<AuthorResponse>> Add(AuthorRequest authorRequest)
     {
+        var resultValidation = await _authorValidator.ValidateAsync(authorRequest);
+
+        if (!resultValidation.IsValid) {
+
+            var error = new ValidationException(resultValidation.Errors);
+
+            return new Result<AuthorResponse>(error);
+        }
+
         Author author = Author.Create(
             Guid.NewGuid(),
             authorRequest.FirstName,
@@ -35,7 +47,7 @@ public class AuthorService : IAuthorService
 
         await _unitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<AuthorResponse>(author);
+        return new Result<AuthorResponse>(_mapper.Map<AuthorResponse>(author));
     }
 
     public async Task Delete(Guid id)
@@ -70,8 +82,17 @@ public class AuthorService : IAuthorService
         return _mapper.Map<List<AuthorResponse>>(authors);
     }
 
-    public async Task Update(Guid Id, AuthorRequest bookRequest)
+    public async Task<Result<bool>> Update(Guid Id, AuthorRequest bookRequest)
     {
+        var result = await _authorValidator.ValidateAsync(bookRequest);
+
+        if(!result.IsValid)
+        {
+            var errors = new ValidationException(result.Errors);
+
+            return new Result<bool>(errors);
+        }
+
         var author = await _authorRepository.GetById(Id);
 
         if (author is null)
@@ -86,5 +107,7 @@ public class AuthorService : IAuthorService
             );
 
         await _unitOfWork.SaveChangesAsync();
+
+        return new Result<bool>(true);
     }
 }
