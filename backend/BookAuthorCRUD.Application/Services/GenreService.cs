@@ -4,6 +4,8 @@ using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Contract.DTOs.Genre;
 using BookAuthorCRUD.Domain.Entities;
 using BookAuthorCRUD.Domain.Interfaces;
+using FluentValidation;
+using LanguageExt.Common;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -12,16 +14,27 @@ public class GenreService : IGenreService
     private readonly IGenreRepository _genreRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IValidator<GenreRequest> _genreValidator;
 
-    public GenreService(IGenreRepository genreRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public GenreService(IGenreRepository genreRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<GenreRequest> genreValidator)
     {
         _genreRepository = genreRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _genreValidator = genreValidator;
     }
 
-    public async Task<GenreResponse> Add(GenreRequest genreRequest)
+    public async Task<Result<GenreResponse>> Add(GenreRequest genreRequest)
     {
+        var resultValidation = await _genreValidator.ValidateAsync(genreRequest);
+
+        if (!resultValidation.IsValid)
+        {
+            var errors = new ValidationException(resultValidation.Errors);
+
+            return new Result<GenreResponse>(errors);
+        }
+
         Genre genre = Genre.Create(
             Guid.NewGuid(),
             genreRequest.Name
@@ -66,8 +79,17 @@ public class GenreService : IGenreService
         return _mapper.Map<List<GenreResponse>>(genres);
     }
 
-    public async Task Update(Guid Id, GenreRequest genreRequest)
+    public async Task<Result<bool>> Update(Guid Id, GenreRequest genreRequest)
     {
+        var resultValidation = await _genreValidator.ValidateAsync(genreRequest);
+
+        if (!resultValidation.IsValid)
+        {
+            var errors = new ValidationException(resultValidation.Errors);
+
+            return new Result<bool>(errors);
+        }
+
         var genre = await _genreRepository.GetById(Id);
 
         if (genre is null)
@@ -80,5 +102,7 @@ public class GenreService : IGenreService
         _genreRepository.Update(genre);
 
         await _unitOfWork.SaveChangesAsync();
+
+        return true;
     }
 }

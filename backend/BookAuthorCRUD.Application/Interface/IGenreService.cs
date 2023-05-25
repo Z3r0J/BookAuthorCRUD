@@ -1,13 +1,12 @@
-﻿using BookAuthorCRUD.Contract.DTOs.Author;
-using BookAuthorCRUD.Contract.DTOs.Genre;
-using BookAuthorCRUD.Domain.Entities;
+﻿using BookAuthorCRUD.Contract.DTOs.Genre;
+using LanguageExt.Common;
 
 namespace BookAuthorCRUD.Application.Interface;
 
 public interface IGenreService
 {
-    Task <GenreResponse> Add(GenreRequest genreRequest);
-    Task Update(Guid Id, GenreRequest genreRequest);
+    Task<Result<GenreResponse>> Add(GenreRequest genreRequest);
+    Task<Result<bool>> Update(Guid Id, GenreRequest genreRequest);
 
     Task Delete(Guid id);
 
