@@ -1,12 +1,13 @@
 ﻿using BookAuthorCRUD.Contract.DTOs.Author;
 using BookAuthorCRUD.Domain.Entities;
+using LanguageExt.Common;
 
 namespace BookAuthorCRUD.Application.Interface;
 
 public interface IAuthorService
 {
-    Task <AuthorResponse> Add(AuthorRequest authorRequest);
-    Task Update(Guid Id, AuthorRequest authorRequest);
+    Task <Result<AuthorResponse>> Add(AuthorRequest authorRequest);
+    Task<Result<bool>> Update(Guid Id, AuthorRequest authorRequest);
 
     Task Delete(Guid id);
 

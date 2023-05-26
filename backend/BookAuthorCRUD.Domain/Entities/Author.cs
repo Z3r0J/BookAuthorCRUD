@@ -1,72 +1,66 @@
 ﻿using BookAuthorCRUD.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BookAuthorCRUD.Domain.Entities
+namespace BookAuthorCRUD.Domain.Entities;
+
+public sealed class Author : AuditableBaseEntity
 {
-    public sealed class Author : AuditableBaseEntity
+    private readonly List<BookAuthor> _bookAuthors = new();
+
+    public string FirstName { get; private set; } = string.Empty;
+    public string LastName { get; private set; } = string.Empty;
+    public string Address { get; private set; } = string.Empty;
+    public string Email { get; private set; } = string.Empty;
+    public DateTime BirthDate { get; private set; } = DateTime.UtcNow;
+    public IReadOnlyCollection<BookAuthor> Books => _bookAuthors;
+
+    private Author(
+        Guid id,
+        string firstName,
+        string lastName,
+        string address,
+        string email,
+        DateTime birthDate
+    )
     {
-        private readonly List<BookAuthor> _bookAuthors = new();
+        Id = id;
+        FirstName = firstName;
+        LastName = lastName;
+        Address = address;
+        Email = email;
+        BirthDate = birthDate;
+    }
 
-        public string FirstName { get; private set; } = string.Empty;
-        public string LastName { get; private set; } = string.Empty;
-        public string Address { get; private set; } = string.Empty;
-        public string Email { get; private set; } = string.Empty;
-        public DateTime BirthDate { get; private set; } = DateTime.UtcNow;
-        public IReadOnlyCollection<BookAuthor> Books => _bookAuthors;
+    public void AddBooks(BookAuthor book)
+    {
+        _bookAuthors.Add(book);
+    }
 
-        private Author(
-            Guid id,
-            string firstName,
-            string lastName,
-            string address,
-            string email,
-            DateTime birthDate
-        )
-        {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
-            Email = email;
-            BirthDate = birthDate;
-        }
+    public static Author Create(
+        Guid id,
+        string firstName,
+        string lastName,
+        string address,
+        string email,
+        DateTime birthDate
+    )
+    {
+        var author = new Author(id, firstName, lastName, address, email, birthDate);
 
-        public void AddBooks(BookAuthor book)
-        {
-            _bookAuthors.Add(book);
-        }
+        return author;
+    }
 
-        public static Author Create(
-            Guid id,
-            string firstName,
-            string lastName,
-            string address,
-            string email,
-            DateTime birthDate
-        )
-        {
-            var author = new Author(id, firstName, lastName, address, email, birthDate);
-
-            return author;
-        }
-
-        public void Update(
-            string firstName,
-            string lastName,
-            string address,
-            string email,
-            DateTime birthDate
-        )
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Address = address;
-            Email = email;
-            BirthDate = birthDate;
-        }
+    public void Update(
+        string firstName,
+        string lastName,
+        string address,
+        string email,
+        DateTime birthDate
+    )
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Address = address;
+        Email = email;
+        BirthDate = birthDate;
     }
 }

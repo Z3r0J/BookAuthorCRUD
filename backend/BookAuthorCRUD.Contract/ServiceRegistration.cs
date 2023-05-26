@@ -9,7 +9,7 @@ namespace BookAuthorCRUD.Contract
 
         public static IServiceCollection AddContractServices(this IServiceCollection services)
         {
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(),ServiceLifetime.Scoped);
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }

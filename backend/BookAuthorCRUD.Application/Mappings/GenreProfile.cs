@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BookAuthorCRUD.Application.Feature.Genre.Command.Create;
+using BookAuthorCRUD.Application.Feature.Genre.Command.Update;
 using BookAuthorCRUD.Contract.DTOs.Genre;
 using BookAuthorCRUD.Domain.Entities;
 using System;
@@ -14,5 +16,7 @@ public class GenreProfile : Profile
     public GenreProfile()
     {
         CreateMap<Genre, GenreResponse>();
+        CreateMap<CreateGenreCommand, GenreRequest>().ReverseMap();
+        CreateMap<UpdateGenreCommand,GenreRequest>().ReverseMap();
     }
 }

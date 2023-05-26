@@ -2,6 +2,7 @@ using BookAuthorCRUD.Application;
 using BookAuthorCRUD.Contract;
 using BookAuthorCRUD.Infrastructure.Persistence;
 using BookAuthorCRUD.Infrastructure.Persistence.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,12 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddContractServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddApiVersioning(config =>
+{
+    config.DefaultApiVersion = new ApiVersion(1, 0);
+    config.AssumeDefaultVersionWhenUnspecified = true;
+    config.ReportApiVersions = true;
+});
 
 var app = builder.Build();
 

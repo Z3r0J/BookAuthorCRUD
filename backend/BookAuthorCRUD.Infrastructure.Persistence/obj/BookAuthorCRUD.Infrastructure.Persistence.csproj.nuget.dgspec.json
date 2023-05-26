@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.3, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.0.1, )"
