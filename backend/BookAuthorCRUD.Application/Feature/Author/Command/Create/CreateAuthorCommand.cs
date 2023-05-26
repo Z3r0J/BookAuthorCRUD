@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookAuthorCRUD.Application.Feature.Author.Command
+namespace BookAuthorCRUD.Application.Feature.Author.Command.Create
 {
     public record CreateAuthorCommand(
         string FirstName,

@@ -1,4 +1,4 @@
-﻿using BookAuthorCRUD.Application.Feature.Author.Command;
+﻿using BookAuthorCRUD.Application.Feature.Author.Command.Create;
 using BookAuthorCRUD.Application.Feature.Author.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -4,7 +4,7 @@ using BookAuthorCRUD.Contract.DTOs.Author;
 using LanguageExt.Common;
 using MediatR;
 
-namespace BookAuthorCRUD.Application.Feature.Author.Command;
+namespace BookAuthorCRUD.Application.Feature.Author.Command.Create;
 
 class CreateAuthorCommandHandler : IRequestHandler<CreateAuthorCommand, Result<AuthorResponse>>
 {

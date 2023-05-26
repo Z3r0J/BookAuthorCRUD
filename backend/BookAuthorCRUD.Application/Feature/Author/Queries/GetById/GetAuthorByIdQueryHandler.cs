@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using BookAuthorCRUD.Application.Interface;
+﻿using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Author;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BookAuthorCRUD.Application.Feature.Author.Queries;
+namespace BookAuthorCRUD.Application.Feature.Author.Queries.GetById;
 
 public class GetAuthorByIdQueryHandler : IRequestHandler<GetAuthorByIdQuery, AuthorResponse>
 {
