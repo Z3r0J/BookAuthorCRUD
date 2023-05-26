@@ -63,18 +63,12 @@ public class GenreService : IGenreService
     {
         var genre = await _genreRepository.GetById(id);
 
-        if (genre is null)
-            throw new Exception("Genre not found");
-
         return _mapper.Map<GenreResponse>(genre);
     }
 
     public async Task<List<GenreResponse>> GetAllAsync()
     {
         var genres = await _genreRepository.GetAllGenres();
-
-        if (!genres.Any())
-            throw new Exception("No genres found");
 
         return _mapper.Map<List<GenreResponse>>(genres);
     }

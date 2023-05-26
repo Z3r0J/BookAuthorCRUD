@@ -72,18 +72,12 @@ public class BookServices : IBookService
     {
         var book = await _bookRepository.GetById(id);
 
-        if (book is null)
-            throw new Exception("Book not found");
-
         return _mapper.Map<BookResponse>(book);
     }
 
     public async Task<List<BookResponse>> GetAllAsync()
     {
         var books = await _bookRepository.GetAllBooks();
-
-        if (!books.Any())
-            throw new Exception("No books found");
 
         return _mapper.Map<List<BookResponse>>(books);
     }

@@ -27,7 +27,6 @@ public class BookRepository : IBookRepository
         await _applicationContext
             .Set<Book>()
             .Include(x => x.Authors)
-            .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
@@ -36,7 +35,6 @@ public class BookRepository : IBookRepository
         await _applicationContext
             .Set<Book>()
             .Include(x => x.Authors)
-            .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 

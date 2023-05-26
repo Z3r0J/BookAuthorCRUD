@@ -10,7 +10,5 @@ namespace BookAuthorCRUD.Contract.DTOs.Author;
 public record BookAuthorResponse(
     Guid? Id,
     Guid? AuthorId,
-    AuthorResponse? Author,
-    Guid? BookId,
-    BookResponse? Book
+    Guid? BookId
 );

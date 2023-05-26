@@ -1,4 +1,5 @@
-﻿using BookAuthorCRUD.Contract.DTOs.Genre;
+﻿using BookAuthorCRUD.Contract.DTOs.Author;
+using BookAuthorCRUD.Contract.DTOs.Genre;
 
 namespace BookAuthorCRUD.Contract.DTOs.Book;
 
@@ -8,6 +9,5 @@ public record BookResponse(
     string Sypnosis,
     DateTime ReleaseDate,
     string Publisher,
-    Guid GenreId,
-    GenreResponse? Genre
+    Guid GenreId
 );

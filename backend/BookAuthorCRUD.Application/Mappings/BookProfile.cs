@@ -10,8 +10,9 @@ public class BookProfile : Profile
 {
     public BookProfile()
     {
-        CreateMap<Book, BookResponse>()
-            .ForMember(x=>x.Genre,opt=>opt.Ignore());
+        CreateMap<BookResponse, Book>()
+            .ForMember(x => x.Genre, opt => opt.Ignore())
+            .ForMember(x => x.Authors, opt => opt.Ignore()).ReverseMap();
 
         CreateMap<CreateBookCommand, BookRequest>().ReverseMap();
         CreateMap<UpdateBookCommand, BookRequest>().ReverseMap();
