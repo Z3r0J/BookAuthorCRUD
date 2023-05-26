@@ -34,7 +34,6 @@ public class GenreRepository : IGenreRepository
         await _applicationContext
             .Set<Genre>()
             .Include(x => x.Books)
-            .AsNoTracking()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Genre genre) => _applicationContext.Set<Genre>().Update(genre);

@@ -15,7 +15,7 @@ public class GenreProfile : Profile
 {
     public GenreProfile()
     {
-        CreateMap<Genre, GenreResponse>();
+        CreateMap<Genre, GenreResponse>().ReverseMap();
         CreateMap<CreateGenreCommand, GenreRequest>().ReverseMap();
         CreateMap<UpdateGenreCommand,GenreRequest>().ReverseMap();
     }

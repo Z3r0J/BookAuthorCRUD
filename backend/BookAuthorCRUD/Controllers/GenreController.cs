@@ -1,32 +1,33 @@
-﻿using BookAuthorCRUD.Application.Feature.Book.Command.Create;
-using BookAuthorCRUD.Application.Feature.Book.Command.Delete;
-using BookAuthorCRUD.Application.Feature.Book.Command.Update;
-using BookAuthorCRUD.Application.Feature.Book.Query.GetAll;
-using BookAuthorCRUD.Application.Feature.Book.Query.GetById;
+﻿
+using BookAuthorCRUD.Application.Feature.Genre.Command.Create;
+using BookAuthorCRUD.Application.Feature.Genre.Command.Delete;
+using BookAuthorCRUD.Application.Feature.Genre.Command.Update;
+using BookAuthorCRUD.Application.Feature.Genre.Query.GetAll;
+using BookAuthorCRUD.Application.Feature.Genre.Query.GetById;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookAuthorCRUD.API.Controllers
 {
-    [ApiController]
-    public class BookController : BaseController
+    public class GenreController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllBook() =>
-            Ok(await Mediator.Send(new GetAllBookQuery()));
+        public async Task<IActionResult> GetAllGenre() =>
+            Ok(await Mediator.Send(new GetAllGenreQuery()));
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetBookById(Guid id) =>
-            Ok(await Mediator.Send(new GetBookByIdQuery(id)));
+        public async Task<IActionResult> GetGenreById(Guid id) =>
+            Ok(await Mediator.Send(new GetGenreByIdQuery(id)));
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook(CreateBookCommand command)
+        public async Task<IActionResult> CreateGenre(CreateGenreCommand command)
         {
             var result = await Mediator.Send(command);
 
             return result.Match<IActionResult>(
                 success =>
                 {
-                    return Created(nameof(GetAllBook), success);
+                    return Created(nameof(GetAllGenre), success);
                 },
                 error =>
                 {
@@ -36,7 +37,7 @@ namespace BookAuthorCRUD.API.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateBook(Guid id, UpdateBookCommand command)
+        public async Task<IActionResult> UpdateGenre(Guid id, UpdateGenreCommand command)
         {
 
             if (command.Id != id)
@@ -60,9 +61,9 @@ namespace BookAuthorCRUD.API.Controllers
 
         [HttpDelete("{id:guid}")]
 
-        public async Task<IActionResult> DeleteBook(Guid id) {
+        public async Task<IActionResult> DeleteGenre(Guid id) {
 
-            await Mediator.Send(new DeleteBookCommand(id));
+            await Mediator.Send(new DeleteGenreCommand(id));
 
             return NoContent();
         

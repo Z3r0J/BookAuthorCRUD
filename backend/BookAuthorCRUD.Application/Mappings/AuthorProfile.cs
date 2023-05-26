@@ -10,10 +10,11 @@ public class AuthorProfile : Profile
 {
     public AuthorProfile()
     {
-        CreateMap<Author, AuthorResponse>()
-            .ForMember(x => x.Books, opt => opt.MapFrom(x => x.Books.Select(x => x.Book)));
+        CreateMap<Author, AuthorResponse>().ForMember(x=>x.Books,opt=>opt.Ignore());
 
         CreateMap<CreateAuthorCommand, AuthorRequest>().ReverseMap();
         CreateMap<UpdateAuthorCommand, AuthorRequest>().ReverseMap();
+
+        CreateMap<BookAuthor, BookAuthorResponse>().ReverseMap();
     }
 }

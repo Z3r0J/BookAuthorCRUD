@@ -53,7 +53,7 @@ public class BookServices : IBookService
 
         await _unitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<BookResponse>(book);
+        return new Result<BookResponse>(_mapper.Map<BookResponse>(book));
     }
 
     public async Task Delete(Guid id)
@@ -122,6 +122,7 @@ public class BookServices : IBookService
                 .ForEach(bookAuthor => book.AddAuthor(bookAuthor));
         }
 
+        _bookRepository.Update(book);
         await _unitOfWork.SaveChangesAsync();
 
         return true;

@@ -11,6 +11,7 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\LanguageExt.Core.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\MediatR.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\MediatR.Contracts.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
@@ -98,4 +99,3 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.genruntimeconfig.cache
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\ref\BookAuthorCRUD.API.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\LanguageExt.Core.dll

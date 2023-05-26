@@ -1,10 +1,4 @@
-﻿using BookAuthorCRUD.Contract.DTOs.Author;
-using BookAuthorCRUD.Contract.DTOs.Genre;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookAuthorCRUD.Contract.DTOs.Genre;
 
 namespace BookAuthorCRUD.Contract.DTOs.Book;
 
@@ -15,6 +9,5 @@ public record BookResponse(
     DateTime ReleaseDate,
     string Publisher,
     Guid GenreId,
-    GenreResponse Genre,
-    List<AuthorResponse>? Authors
+    GenreResponse? Genre
 );

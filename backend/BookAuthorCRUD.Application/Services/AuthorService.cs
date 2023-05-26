@@ -107,6 +107,8 @@ public class AuthorService : IAuthorService
             bookRequest.BirthDate
             );
 
+        _authorRepository.Update(author);
+
         await _unitOfWork.SaveChangesAsync();
 
         return new Result<bool>(true);

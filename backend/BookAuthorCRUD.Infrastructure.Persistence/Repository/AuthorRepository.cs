@@ -36,7 +36,6 @@ public class AuthorRepository : IAuthorRepository
             .Set<Author>()
             .Include(x => x.Books)
             .ThenInclude(x => x.Book!)
-            .AsNoTracking()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Author author) => _applicationContext.Set<Author>().Update(author);

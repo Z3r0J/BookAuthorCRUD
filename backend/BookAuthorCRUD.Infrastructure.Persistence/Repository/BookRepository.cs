@@ -38,7 +38,6 @@ public class BookRepository : IBookRepository
             .Include(x => x.Authors)
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
-            .AsNoTracking()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Book book) => _applicationContext.Set<Book>().Update(book);
