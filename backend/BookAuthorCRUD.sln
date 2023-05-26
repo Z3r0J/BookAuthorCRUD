@@ -5,23 +5,25 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.API", "BookAuthorCRUD\BookAuthorCRUD.API.csproj", "{9EA36458-7062-410F-A20F-ECE4801E9DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAuthorCRUD.Domain", "BookAuthorCRUD.Domain\BookAuthorCRUD.Domain.csproj", "{0CAB2627-DD17-4D51-9C15-1AD15850D500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.Domain", "BookAuthorCRUD.Domain\BookAuthorCRUD.Domain.csproj", "{0CAB2627-DD17-4D51-9C15-1AD15850D500}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F01A13AF-96C3-4B1C-B657-231D56AAB7F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8D1CB6F9-42DB-4303-93C3-C990DDCD693E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAuthorCRUD.Infrastructure.Persistence", "BookAuthorCRUD.Infrastructure.Persistence\BookAuthorCRUD.Infrastructure.Persistence.csproj", "{05062C29-4AC5-4985-93F0-D8F8DF5ADB3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.Infrastructure.Persistence", "BookAuthorCRUD.Infrastructure.Persistence\BookAuthorCRUD.Infrastructure.Persistence.csproj", "{05062C29-4AC5-4985-93F0-D8F8DF5ADB3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAuthorCRUD.Application", "BookAuthorCRUD.Application\BookAuthorCRUD.Application.csproj", "{E48EF2B1-56BC-49BB-BA66-8A4537301B46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.Application", "BookAuthorCRUD.Application\BookAuthorCRUD.Application.csproj", "{E48EF2B1-56BC-49BB-BA66-8A4537301B46}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6A285EE6-C233-485C-A90D-8A40582DB4A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4FA2A14E-D427-4467-A0D6-36A22C6130C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAuthorCRUD.Test", "BookAuthorCRUD.Test\BookAuthorCRUD.Test.csproj", "{DF11D3EA-6F9F-4285-808D-58BF8254BB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.Test", "BookAuthorCRUD.Test\BookAuthorCRUD.Test.csproj", "{DF11D3EA-6F9F-4285-808D-58BF8254BB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAuthorCRUD.Contract", "BookAuthorCRUD.Contract\BookAuthorCRUD.Contract.csproj", "{7048533B-A4F5-4BB0-B7A9-6C6E176944BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAuthorCRUD.Contract", "BookAuthorCRUD.Contract\BookAuthorCRUD.Contract.csproj", "{7048533B-A4F5-4BB0-B7A9-6C6E176944BF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{15E82FA7-389D-433E-B324-678879F3F944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{7048533B-A4F5-4BB0-B7A9-6C6E176944BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7048533B-A4F5-4BB0-B7A9-6C6E176944BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7048533B-A4F5-4BB0-B7A9-6C6E176944BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15E82FA7-389D-433E-B324-678879F3F944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15E82FA7-389D-433E-B324-678879F3F944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15E82FA7-389D-433E-B324-678879F3F944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15E82FA7-389D-433E-B324-678879F3F944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

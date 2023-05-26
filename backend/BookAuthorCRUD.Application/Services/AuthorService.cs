@@ -4,6 +4,7 @@ using BookAuthorCRUD.Contract.DTOs.Author;
 using BookAuthorCRUD.Domain.Entities;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
+using FluentValidation.Results;
 using LanguageExt.Common;
 
 namespace BookAuthorCRUD.Application.Services;
@@ -96,7 +97,7 @@ public class AuthorService : IAuthorService
         var author = await _authorRepository.GetById(Id);
 
         if (author is null)
-            throw new Exception("Book not found");
+            return new Result<bool>(new ValidationException("Books not found"));
 
         author.Update(
             bookRequest.FirstName,
