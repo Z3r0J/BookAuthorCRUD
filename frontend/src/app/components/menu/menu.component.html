@@ -7,6 +7,7 @@
       class="menu-item"
       *ngFor="let item of menuList"
       [routerLink]="item.path"
+      routerLinkActive="active"
       ><mat-icon class="menu-icon">{{ item.iconName }}</mat-icon
       >{{ item.name }}</a
     >

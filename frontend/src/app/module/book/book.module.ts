@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
-import { BookComponent } from './book.component';
+import { BookComponent } from '../../components/book/book.component';
 
 @NgModule({
   declarations: [BookComponent],
