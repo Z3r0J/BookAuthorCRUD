@@ -8,6 +8,7 @@ C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.AspNetCore.
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\BookAuthorCRUD.Application.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\BookAuthorCRUD.Contract.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\LanguageExt.Core.dll
+C:\Users\admin\source\test-hahn-software\backend\bin\Debug\MediatR.Contracts.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\MediatR.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
@@ -16,7 +17,6 @@ C:\Users\admin\source\test-hahn-software\backend\bin\Debug\BookAuthorCRUD.Infras
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\admin\source\test-hahn-software\backend\bin\Debug\MediatR.Contracts.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.Extensions.Options.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\Microsoft.Extensions.Primitives.dll
 C:\Users\admin\source\test-hahn-software\backend\bin\Debug\BookAuthorCRUD.Domain.dll

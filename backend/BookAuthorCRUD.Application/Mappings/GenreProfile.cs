@@ -15,8 +15,12 @@ public class GenreProfile : Profile
 {
     public GenreProfile()
     {
-        CreateMap<Genre, GenreResponse>();
+        CreateMap<GenreResponse, Genre>()
+            .ForMember(x => x.Books, opt => opt.Ignore())
+            .ReverseMap()
+            .ForMember(x=>x.BookCount,opt=>opt.MapFrom(x=>x.Books.Count));
+
         CreateMap<CreateGenreCommand, GenreRequest>().ReverseMap();
-        CreateMap<UpdateGenreCommand,GenreRequest>().ReverseMap();
+        CreateMap<UpdateGenreCommand, GenreRequest>().ReverseMap();
     }
 }

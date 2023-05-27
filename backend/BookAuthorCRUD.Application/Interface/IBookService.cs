@@ -14,4 +14,5 @@ public interface IBookService
     Task<BookResponse> GetByIdAsync(Guid id);
 
     Task<List<BookResponse>> GetAllAsync();
+    Task<List<BookResponse>> GetBooksByAuthorId(Guid authorId);
 }

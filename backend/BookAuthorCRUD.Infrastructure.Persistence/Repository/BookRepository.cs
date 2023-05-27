@@ -38,8 +38,19 @@ public class BookRepository : IBookRepository
             .Include(x => x.Authors)
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
-            .AsNoTracking()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+
+    public async Task<List<Book>> GetBooksByAuthorId(
+        Guid authorId,
+        CancellationToken cancellationToken = default
+    ) =>
+        await _applicationContext
+            .Set<Book>()
+            .Include(x => x.Authors)
+            .ThenInclude(x => x.Author)
+            .Include(x => x.Genre)
+            .Where(x => x.Authors.Any(x => x.AuthorId == authorId))
+            .ToListAsync(cancellationToken);
 
     public void Update(Book book) => _applicationContext.Set<Book>().Update(book);
 }

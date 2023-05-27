@@ -1,10 +1,17 @@
-﻿using BookAuthorCRUD.Contract.DTOs.Book;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookAuthorCRUD.Contract.DTOs.Author;
+using BookAuthorCRUD.Contract.DTOs.Book;
 
 namespace BookAuthorCRUD.Contract.DTOs.Genre;
 
-public record GenreResponse(Guid Id, string Name, List<BookResponse> Books);
+public record GenreResponse
+{
+    public GenreResponse()
+    {
+
+    }
+
+    public Guid Id { get; init; }
+    public string Name { get; init; }
+    public List<BookResponse>? Books { get; init; }
+    public long? BookCount { get; init; }
+}

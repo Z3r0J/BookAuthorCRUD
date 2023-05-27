@@ -53,7 +53,7 @@ public class BookServices : IBookService
 
         await _unitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<BookResponse>(book);
+        return new Result<BookResponse>(_mapper.Map<BookResponse>(book));
     }
 
     public async Task Delete(Guid id)
@@ -72,9 +72,6 @@ public class BookServices : IBookService
     {
         var book = await _bookRepository.GetById(id);
 
-        if (book is null)
-            throw new Exception("Book not found");
-
         return _mapper.Map<BookResponse>(book);
     }
 
@@ -82,12 +79,15 @@ public class BookServices : IBookService
     {
         var books = await _bookRepository.GetAllBooks();
 
-        if (!books.Any())
-            throw new Exception("No books found");
-
         return _mapper.Map<List<BookResponse>>(books);
     }
 
+    public async Task<List<BookResponse>> GetBooksByAuthorId(Guid authorId)
+    {
+        var books = await _bookRepository.GetBooksByAuthorId(authorId);
+
+        return _mapper.Map<List<BookResponse>>(books);
+    }
     public async Task<Result<bool>> Update(Guid Id, BookRequest bookRequest)
     {
         var resultValidator = await _bookValidator.ValidateAsync(bookRequest);
@@ -122,6 +122,7 @@ public class BookServices : IBookService
                 .ForEach(bookAuthor => book.AddAuthor(bookAuthor));
         }
 
+        _bookRepository.Update(book);
         await _unitOfWork.SaveChangesAsync();
 
         return true;

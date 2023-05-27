@@ -67,18 +67,12 @@ public class AuthorService : IAuthorService
     {
         var author = await _authorRepository.GetById(id);
 
-        if (author is null)
-            throw new Exception("Book not found");
-
         return _mapper.Map<AuthorResponse>(author);
     }
 
     public async Task<List<AuthorResponse>> GetAllAsync()
     {
         var authors = await _authorRepository.GetAllAuthor();
-
-        if (!authors.Any())
-            throw new Exception("No books found");
 
         return _mapper.Map<List<AuthorResponse>>(authors);
     }
@@ -106,6 +100,8 @@ public class AuthorService : IAuthorService
             bookRequest.Email,
             bookRequest.BirthDate
             );
+
+        _authorRepository.Update(author);
 
         await _unitOfWork.SaveChangesAsync();
 

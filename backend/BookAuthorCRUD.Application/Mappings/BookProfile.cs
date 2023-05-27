@@ -10,13 +10,23 @@ public class BookProfile : Profile
 {
     public BookProfile()
     {
-        CreateMap<Book, BookResponse>()
+        CreateMap<BookResponse, Book>()
+            .ForMember(x => x.Genre, opt => opt.Ignore())
+            .ForMember(x => x.Authors, opt => opt.Ignore())
+            .ReverseMap()
             .ForMember(
-                x => x.Authors,
-                config => config.MapFrom(x => x.Authors.Select(x => x.Author))
-            );
+                x => x.AuthorList,
+                opt =>
+                    opt.MapFrom(
+                        x =>
+                            x.Authors
+                                .Select(x => $"{x.Author.FirstName} {x.Author.LastName}")
+                                .ToList() ?? new()
+                    )
+            ).ForMember(x=>x.GenreName,opt=>opt.MapFrom(b=>b.Genre.Name??""));
+        ;
 
-        CreateMap<CreateBookCommand,BookRequest>().ReverseMap();
+        CreateMap<CreateBookCommand, BookRequest>().ReverseMap();
         CreateMap<UpdateBookCommand, BookRequest>().ReverseMap();
     }
 }

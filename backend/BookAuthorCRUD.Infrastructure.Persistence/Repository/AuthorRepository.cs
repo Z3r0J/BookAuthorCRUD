@@ -28,6 +28,7 @@ public class AuthorRepository : IAuthorRepository
             .Set<Author>()
             .Include(x => x.Books)
             .ThenInclude(x => x.Book!)
+            .ThenInclude(x => x.Genre)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
@@ -36,7 +37,7 @@ public class AuthorRepository : IAuthorRepository
             .Set<Author>()
             .Include(x => x.Books)
             .ThenInclude(x => x.Book!)
-            .AsNoTracking()
+            .ThenInclude(x => x.Genre)
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Author author) => _applicationContext.Set<Author>().Update(author);
