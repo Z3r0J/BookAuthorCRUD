@@ -82,6 +82,12 @@ public class BookServices : IBookService
         return _mapper.Map<List<BookResponse>>(books);
     }
 
+    public async Task<List<BookResponse>> GetBooksByAuthorId(Guid authorId)
+    {
+        var books = await _bookRepository.GetBooksByAuthorId(authorId);
+
+        return _mapper.Map<List<BookResponse>>(books);
+    }
     public async Task<Result<bool>> Update(Guid Id, BookRequest bookRequest)
     {
         var resultValidator = await _bookValidator.ValidateAsync(bookRequest);

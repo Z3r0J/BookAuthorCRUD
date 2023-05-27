@@ -3,11 +3,18 @@ using BookAuthorCRUD.Contract.DTOs.Genre;
 
 namespace BookAuthorCRUD.Contract.DTOs.Book;
 
-public record BookResponse(
-    Guid Id,
-    string Title,
-    string Sypnosis,
-    DateTime ReleaseDate,
-    string Publisher,
-    Guid GenreId
-);
+public record BookResponse
+{
+    public BookResponse()
+    {
+
+    }
+
+    public Guid Id { get; init; }
+    public string Title { get; init; }
+    public string Sypnosis { get; init; }
+    public DateTime ReleaseDate { get; init; }
+    public string Publisher { get; init; }
+    public Guid GenreId { get; init; }
+    public List<string>? AuthorList { get; init; }
+}

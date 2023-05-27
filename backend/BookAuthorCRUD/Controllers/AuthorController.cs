@@ -2,6 +2,7 @@
 using BookAuthorCRUD.Application.Feature.Author.Command.Delete;
 using BookAuthorCRUD.Application.Feature.Author.Command.Update;
 using BookAuthorCRUD.Application.Feature.Author.Queries.GetAll;
+using BookAuthorCRUD.Application.Feature.Author.Queries.GetBooks;
 using BookAuthorCRUD.Application.Feature.Author.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,12 @@ namespace BookAuthorCRUD.API.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await Mediator.Send(new GetAuthorByIdQuery(id)));
+        }
+
+        [HttpGet("books/{authorId:guid}")]
+        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
+        {
+            return Ok(await Mediator.Send(new GetBooksByAuthorIdQuery(authorId)));
         }
 
         [HttpPost]
