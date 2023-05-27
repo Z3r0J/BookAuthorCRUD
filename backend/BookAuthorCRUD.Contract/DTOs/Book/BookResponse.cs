@@ -16,5 +16,6 @@ public record BookResponse
     public DateTime ReleaseDate { get; init; }
     public string Publisher { get; init; }
     public Guid GenreId { get; init; }
+    public string? GenreName { get; init; }
     public List<string>? AuthorList { get; init; }
 }

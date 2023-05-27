@@ -27,6 +27,8 @@ public class GenreRepository : IGenreRepository
         await _applicationContext
             .Set<Genre>()
             .Include(x => x.Books)
+            .ThenInclude(x => x.Authors)
+            .ThenInclude(x => x.Author)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
@@ -34,6 +36,8 @@ public class GenreRepository : IGenreRepository
         await _applicationContext
             .Set<Genre>()
             .Include(x => x.Books)
+            .ThenInclude(x => x.Authors)
+            .ThenInclude(x => x.Author)
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public void Update(Genre genre) => _applicationContext.Set<Genre>().Update(genre);

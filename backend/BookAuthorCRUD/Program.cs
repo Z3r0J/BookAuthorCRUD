@@ -20,6 +20,11 @@ builder.Services.AddApiVersioning(config =>
     config.ReportApiVersions = true;
 });
 
+builder.Services.AddCors(
+    x => x.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod())
+);
+;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,7 +37,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors();
 app.MapControllers();
 
 app.Run();
