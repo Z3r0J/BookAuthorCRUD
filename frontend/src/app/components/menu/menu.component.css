@@ -16,8 +16,7 @@
 }
 
 .menu-item:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: var(--bs-secondary-color);
 }
 
 .menu-icon {
@@ -26,6 +25,5 @@
 }
 
 .active {
-  background-color: #fff;
-  color: #000 !important;
+  background-color: var(--bs-tertiary-color);
 }

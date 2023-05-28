@@ -1,0 +1,85 @@
+<div class="mat-toolbar mat-primary p-2">
+  <h4 mat-dialog-title class="text-light">
+    <mat-icon class="me-2 position-relative" style="top: 0.2em">add</mat-icon>
+    Create a new Book
+  </h4>
+</div>
+<div mat-dialog-content class="p-3">
+  <p>Fill out the form to create a new book.</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-100">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error *ngIf="form.controls['title'].hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Sypnosis</mat-label>
+      <textarea
+        matInput
+        formControlName="sypnosis"
+        placeholder="Ex: Harry Potter show us the life of a young wizard."
+      ></textarea>
+      <mat-error *ngIf="form.controls['sypnosis'].hasError('required')">
+        Sypnosis is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100 mb-1">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a release date"
+        formControlName="releaseDate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.controls['releaseDate'].hasError('required')">
+        Release Date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Publisher</mat-label>
+      <input matInput formControlName="publisher" />
+      <mat-error *ngIf="form.controls['publisher'].hasError('required')">
+        Publisher is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Genres</mat-label>
+      <mat-select formControlName="genreId">
+        <mat-option value="" selected>Select the Genres</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.controls['genreId'].hasError('required')">
+        Genre is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Authors</mat-label>
+      <mat-select multiple formControlName="authorsId">
+        <mat-option value="" selected>Select the Authors</mat-option>
+        <mat-option value="1" selected>Select the Authors</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.controls['authorsId'].hasError('required')">
+        Unless an Author is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="p-2">
+      <button
+        mat-button
+        type="submit"
+        cdkFocusInitial
+        class="btn btn-success me-2"
+      >
+        Save
+      </button>
+      <button mat-button class="btn btn-danger me-2" (click)="closeDialog()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
