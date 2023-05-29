@@ -1,17 +1,24 @@
 <div class="mat-toolbar mat-primary p-2">
-  <h4 mat-dialog-title class="text-light">
+  <h4 mat-dialog-title class="text-light" *ngIf="!data.isEdit">
     <mat-icon class="me-2 position-relative" style="top: 0.2em">add</mat-icon>
     Create a new Book
   </h4>
+  <h4 mat-dialog-title class="text-light" *ngIf="data.isEdit">
+    <mat-icon class="me-2 position-relative" style="top: 0.2em">edit</mat-icon>
+    Edit a Book
+  </h4>
 </div>
 <div mat-dialog-content class="p-3">
-  <p>Fill out the form to create a new book.</p>
+  <p>Fill out the form.</p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" />
       <mat-error *ngIf="form.controls['title'].hasError('required')">
         Title is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls['title'].hasError('maxlength')">
+        Title must be <strong>less than 150 characters</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
@@ -47,6 +54,9 @@
       <input matInput formControlName="publisher" />
       <mat-error *ngIf="form.controls['publisher'].hasError('required')">
         Publisher is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="form.controls['publisher'].hasError('maxlength')">
+        Publisher must be <strong>less than 200 characters</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">

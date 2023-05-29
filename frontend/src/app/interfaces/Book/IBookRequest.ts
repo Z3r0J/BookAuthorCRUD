@@ -1,4 +1,5 @@
 export interface IBookRequest {
+  id: string | undefined;
   title: string;
   sypnosis: string;
   releaseDate: Date;

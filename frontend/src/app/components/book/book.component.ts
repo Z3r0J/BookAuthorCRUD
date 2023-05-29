@@ -13,6 +13,13 @@ export class BookComponent implements OnInit {
   openCreateDialog = () =>
     this.dialog.open(CreateBookComponent, {
       width: '450px',
+      data: { isEdit: false, id: '' },
+    });
+
+  openEditDialog = (id: string) =>
+    this.dialog.open(CreateBookComponent, {
+      width: '450px',
+      data: { isEdit: true, id: id },
     });
 
   ngOnInit(): void {

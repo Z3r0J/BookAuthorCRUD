@@ -1,11 +1,11 @@
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
+import { AuthorComponent } from 'src/app/components/author/author.component';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
-import { BookComponent } from '../../components/book/book.component';
 
 @NgModule({
-  declarations: [BookComponent],
+  declarations: [AuthorComponent],
   imports: [AppRoutingModule, MatIconModule],
-  exports: [BookComponent],
+  exports: [AuthorComponent],
 })
-export class BookModule {}
+export class AuthorModule {}
