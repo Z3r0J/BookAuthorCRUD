@@ -14,11 +14,8 @@
     <mat-form-field class="w-100">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" />
-      <mat-error *ngIf="form.controls['title'].hasError('required')">
-        Title is <strong>required</strong>
-      </mat-error>
-      <mat-error *ngIf="form.controls['title'].hasError('maxlength')">
-        Title must be <strong>less than 150 characters</strong>
+      <mat-error *ngIf="hasError('title')">
+        {{ getError("title") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
@@ -28,8 +25,8 @@
         formControlName="sypnosis"
         placeholder="Ex: Harry Potter show us the life of a young wizard."
       ></textarea>
-      <mat-error *ngIf="form.controls['sypnosis'].hasError('required')">
-        Sypnosis is <strong>required</strong>
+      <mat-error *ngIf="hasError('sypnosis')">
+        {{ getError("sypnosis") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100 mb-1">
@@ -45,18 +42,15 @@
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.controls['releaseDate'].hasError('required')">
-        Release Date is <strong>required</strong>
+      <mat-error *ngIf="hasError('releaseDate')">
+        {{ getError("releaseDate") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Publisher</mat-label>
       <input matInput formControlName="publisher" />
-      <mat-error *ngIf="form.controls['publisher'].hasError('required')">
-        Publisher is <strong>required</strong>
-      </mat-error>
-      <mat-error *ngIf="form.controls['publisher'].hasError('maxlength')">
-        Publisher must be <strong>less than 200 characters</strong>
+      <mat-error *ngIf="hasError('publisher')">
+        {{ getError("publisher") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
@@ -64,8 +58,8 @@
       <mat-select formControlName="genreId">
         <mat-option value="" selected>Select the Genres</mat-option>
       </mat-select>
-      <mat-error *ngIf="form.controls['genreId'].hasError('required')">
-        Genre is <strong>required</strong>
+      <mat-error *ngIf="hasError('genreId')">
+        {{ getError("genreId") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
@@ -74,8 +68,8 @@
         <mat-option value="" selected>Select the Authors</mat-option>
         <mat-option value="1" selected>Select the Authors</mat-option>
       </mat-select>
-      <mat-error *ngIf="form.controls['authorsId'].hasError('required')">
-        Unless an Author is <strong>required</strong>
+      <mat-error *ngIf="hasError('authorsId')">
+        {{ getError("authorsId") }}
       </mat-error>
     </mat-form-field>
     <div mat-dialog-actions class="p-2">

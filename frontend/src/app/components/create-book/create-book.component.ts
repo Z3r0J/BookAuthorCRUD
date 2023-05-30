@@ -3,6 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IBookRequest } from 'src/app/interfaces/Book/IBookRequest';
+import { BookValidation } from 'src/app/validations/BookValidation';
+import { addValidationObject } from 'src/app/validations/addValidationObject';
 
 @Component({
   selector: 'app-create-book',
@@ -10,14 +12,14 @@ import { IBookRequest } from 'src/app/interfaces/Book/IBookRequest';
   styleUrls: ['./create-book.component.css'],
 })
 export class CreateBookComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
-
   constructor(
     public dialogRef: MatDialogRef<CreateBookComponent>,
     private formBuilder: FormBuilder,
     private BookService: BookService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private validation: BookValidation
   ) {}
+  form: FormGroup = new FormGroup({});
 
   book: IBookRequest = {
     id: undefined,
@@ -28,6 +30,9 @@ export class CreateBookComponent implements OnInit {
     genreId: '',
     authorsId: [],
   };
+
+  hasError = (key: string) => this.form.controls[key].hasError(key);
+  getError = (key: string) => this.form.controls[key].getError(key);
 
   ngOnInit(): void {
     if (this.data.isEdit) {
@@ -45,21 +50,17 @@ export class CreateBookComponent implements OnInit {
     }
 
     this.form = this.formBuilder.group({
-      title: [
-        this.book.title,
-        [Validators.required, Validators.maxLength(150)],
-      ],
+      title: [this.book.title, [Validators.required]],
       sypnosis: [this.book.sypnosis, [Validators.required]],
       releaseDate: [this.book.releaseDate, [Validators.required]],
-      publisher: [
-        this.book.publisher,
-        [Validators.required, Validators.maxLength(200)],
-      ],
+      publisher: [this.book.publisher, [Validators.required]],
       genreId: [this.book.genreId, [Validators.required]],
-      authorsId: [
-        this.book.authorsId,
-        [Validators.required, Validators.minLength(1)],
-      ],
+      authorsId: [this.book.authorsId, [Validators.required]],
+    });
+
+    this.form.valueChanges.subscribe((values: any) => {
+      const errors = this.validation.validate(values);
+      addValidationObject(this.form, errors);
     });
   }
 
