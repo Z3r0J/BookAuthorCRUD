@@ -16,12 +16,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthorComponent } from 'src/app/components/author/author.component';
+import { CreateAuthorComponent } from 'src/app/components/create-author/create-author.component';
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     AuthorComponent,
     CreateBookComponent,
+    CreateAuthorComponent,
   ],
   imports: [
     BrowserModule,

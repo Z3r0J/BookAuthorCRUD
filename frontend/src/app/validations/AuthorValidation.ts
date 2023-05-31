@@ -1,5 +1,10 @@
+import { Injectable } from '@angular/core';
 import { Validator } from 'fluentvalidation-ts';
 import { IAuthorRequest } from '../interfaces/Author/IAuthorRequest';
+
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthorValidation extends Validator<IAuthorRequest> {
   constructor() {
     super();
@@ -23,9 +28,7 @@ export class AuthorValidation extends Validator<IAuthorRequest> {
     this.ruleFor('birthDate')
       .notNull()
       .withMessage('Birth date is required')
-      .must((birth) => birth != new Date())
-      .withMessage('Birth date must be different from today')
-      .must((birth) => birth < new Date())
-      .withMessage('Birth date must be less than today');
+      .must((birth) => birth.getFullYear() <= new Date().getFullYear() - 5)
+      .withMessage('Birth date must be at least 5 years ago');
   }
 }

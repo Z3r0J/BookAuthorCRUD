@@ -78,5 +78,7 @@ export class CreateBookComponent implements OnInit {
     this.data.isEdit
       ? await this.BookService.update(this.data.id, this.form.value)
       : await this.BookService.add(this.form.value);
+
+    this.closeDialog();
   };
 }
