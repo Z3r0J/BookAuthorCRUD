@@ -21,21 +21,25 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">
       <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" />
+      <input
+        matInput
+        formControlName="firstName"
+        [ngModel]="author.firstName"
+      />
       <mat-error *ngIf="hasError('firstName')">
         {{ getError("firstName") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" />
+      <input matInput formControlName="lastName" [ngModel]="author.lastName" />
       <mat-error *ngIf="hasError('lastName')">
         {{ getError("lastName") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Address</mat-label>
-      <input matInput formControlName="address" />
+      <input matInput formControlName="address" [ngModel]="author.address" />
       <mat-error *ngIf="hasError('address')">
         {{ getError("address") }}
       </mat-error>
@@ -46,6 +50,7 @@
         formControlName="email"
         placeholder="Email"
         type="email"
+        [ngModel]="author.email"
       />
       <mat-error *ngIf="hasError('email')">
         {{ getError("email") }}
@@ -53,7 +58,12 @@
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Birth Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="birthDate"
+        [ngModel]="author.birthDate"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="hasError('birthDate')">

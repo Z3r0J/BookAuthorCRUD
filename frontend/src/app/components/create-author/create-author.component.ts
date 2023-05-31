@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IAuthorRequest } from 'src/app/interfaces/Author/IAuthorRequest';
 import { AuthorService } from 'src/app/services/author.service';
 import { AuthorValidation } from 'src/app/validations/AuthorValidation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-author',
@@ -45,14 +46,7 @@ export class CreateAuthorComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.isEdit) {
       this.authorService.getById(this.data.id!).then((value) => {
-        this.author = {
-          id: value.id,
-          firstName: value.firstName,
-          lastName: value.lastName,
-          address: value.address,
-          email: value.email,
-          birthDate: value.birthDate,
-        };
+        this.form.patchValue(value);
       });
     }
     this.form = this.formBuilder.group({
@@ -81,9 +75,19 @@ export class CreateAuthorComponent implements OnInit {
     this.data.isEdit
       ? this.authorService.update(this.data.id, this.form.value).then(() => {
           this.dialogRef.close();
+          Swal.fire(
+            'Success!',
+            'The author was updated successfully.',
+            'success'
+          );
         })
       : this.authorService.add(this.form.value).then(() => {
           this.dialogRef.close();
+          Swal.fire(
+            'Success!',
+            'The author was created successfully.',
+            'success'
+          );
         });
   };
 }

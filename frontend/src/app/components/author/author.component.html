@@ -7,7 +7,7 @@
   </div>
 
   <div class="d-flex justify-content-center mt-4">
-    <table class="table table-striped w-75 shadow">
+    <table class="table table-striped shadow">
       <thead class="mat-toolbar mat-primary text-light fs-6">
         <tr>
           <th>First Name</th>
@@ -20,25 +20,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>123 Main St</td>
+        <tr *ngFor="let author of authors">
+          <td>{{ author.firstName }}</td>
+          <td>{{ author.lastName }}</td>
+          <td>{{ author.address }}</td>
           <td>
-            <a href="mailto:johndoe@gmail.com"> johndoe@gmail.com</a>
+            <a href="mailto:johndoe@gmail.com">{{ author.email }}</a>
           </td>
-          <td>01/01/1990</td>
-          <td>3</td>
+          <td>{{ author.birthDate }}</td>
+          <td>{{ author.bookCount }}</td>
           <td>
             <button
               class="btn btn-sm btn-warning text-light fs-6 me-2"
-              (click)="openEditDialog('1')"
+              (click)="openEditDialog(author.id)"
             >
               <mat-icon class="position-relative fs-5" style="top: 0.3em"
                 >edit</mat-icon
               >Edit
             </button>
-            <button class="btn btn-sm btn-danger text-light text-light fs-6">
+            <button
+              class="btn btn-sm btn-danger text-light text-light fs-6"
+              (click)="openDeleteDialog(author.id)"
+            >
               <mat-icon class="position-relative fs-5" style="top: 0.3em"
                 >delete_forever</mat-icon
               >

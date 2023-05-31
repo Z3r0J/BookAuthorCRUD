@@ -1,10 +1,15 @@
+import { IAuthorResponse } from './../../interfaces/Author/IAuthorResponse';
 import { BookService } from './../../services/book.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IBookRequest } from 'src/app/interfaces/Book/IBookRequest';
+import { IGenreResponse } from 'src/app/interfaces/Genre/IGenreResponse';
+import { AuthorService } from 'src/app/services/author.service';
+import { GenreService } from 'src/app/services/genre.service';
 import { BookValidation } from 'src/app/validations/BookValidation';
 import { addValidationObject } from 'src/app/validations/addValidationObject';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-book',
@@ -17,19 +22,16 @@ export class CreateBookComponent implements OnInit {
     private formBuilder: FormBuilder,
     private BookService: BookService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private validation: BookValidation
+    private validation: BookValidation,
+    private authorService: AuthorService,
+    private genreService: GenreService
   ) {}
   form: FormGroup = new FormGroup({});
 
-  book: IBookRequest = {
-    id: undefined,
-    title: '',
-    sypnosis: '',
-    releaseDate: new Date(),
-    publisher: '',
-    genreId: '',
-    authorsId: [],
-  };
+  book: IBookRequest = {} as IBookRequest;
+
+  authors: IAuthorResponse[] = [];
+  genres: IGenreResponse[] = [];
 
   hasError = (key: string) => this.form.controls[key].hasError(key);
   getError = (key: string) => this.form.controls[key].getError(key);
@@ -37,17 +39,17 @@ export class CreateBookComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.isEdit) {
       this.BookService.getById(this.data.id).then((book) => {
-        this.book = {
-          id: book.id,
-          title: book.title,
-          sypnosis: book.sypnosis,
-          releaseDate: new Date(book.releaseDate),
-          publisher: book.publisher,
-          genreId: book.genreId,
-          authorsId: [],
-        };
+        this.form.patchValue(book);
       });
     }
+
+    this.authorService.getAll().then((authors) => {
+      this.authors = authors;
+    });
+
+    this.genreService.getAll().then((genres) => {
+      this.genres = genres;
+    });
 
     this.form = this.formBuilder.group({
       title: [this.book.title, [Validators.required]],
@@ -66,8 +68,11 @@ export class CreateBookComponent implements OnInit {
 
   closeDialog = () => this.dialogRef.close();
 
-  onSubmit = async () => {
-    if (!this.form.valid) return;
+  onSubmit = () => {
+    this.form.value.authorsId = this.form.value.authorsId!.filter(
+      (x: string) => x.length > 0
+    );
+    if (this.form.invalid) return;
 
     this.form.value.releaseDate = new Date(
       this.form.value.releaseDate
@@ -75,14 +80,26 @@ export class CreateBookComponent implements OnInit {
 
     this.form.value.id = this.data.id;
 
-    this.form.value.authorsId = this.form.value.authorsId!.filter(
-      (x: string) => x.length > 0
-    );
-
     this.data.isEdit
-      ? await this.BookService.update(this.data.id, this.form.value)
-      : await this.BookService.add(this.form.value);
-
-    this.closeDialog();
+      ? this.BookService.update(this.data.id, this.form.value)
+          .then(() => {
+            Swal.fire(
+              'Updated!',
+              'The book was updated successfully.',
+              'success'
+            );
+            this.closeDialog();
+          })
+          .catch(() => {
+            Swal.fire('Error!', 'The book could not be updated.', 'error');
+          })
+      : this.BookService.add(this.form.value)
+          .then(() => {
+            Swal.fire('Added!', 'The book was added successfully.', 'success');
+            this.closeDialog();
+          })
+          .catch(() => {
+            Swal.fire('Error!', 'The book could not be added.', 'error');
+          });
   };
 }
