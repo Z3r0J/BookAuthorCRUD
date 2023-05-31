@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthorComponent } from 'src/app/components/author/author.component';
 import { CreateAuthorComponent } from 'src/app/components/create-author/create-author.component';
 import { GenreComponent } from 'src/app/components/genre/genre.component';
+import { CreateGenreComponent } from 'src/app/components/create-genre/create-genre.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { GenreComponent } from 'src/app/components/genre/genre.component';
     GenreComponent,
     CreateBookComponent,
     CreateAuthorComponent,
+    CreateGenreComponent,
   ],
   imports: [
     BrowserModule,

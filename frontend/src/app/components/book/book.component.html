@@ -12,21 +12,25 @@
           <th>Sypnosis</th>
           <th>Release Date</th>
           <th>Publisher</th>
-          <th>Genres</th>
+          <th>Genre</th>
+          <th>Authors</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Harry Potter</td>
-          <td>Harry Potter show us the life of a young wizard.</td>
-          <td>01/01/2000</td>
-          <td>JK Rowling</td>
-          <td>Fantasy</td>
+        <tr *ngFor="let book of books">
+          <td>{{ book.title }}</td>
+          <td>{{ book.sypnosis }}</td>
+          <td>{{ book.releaseDate }}</td>
+          <td>{{ book.publisher }}</td>
+          <td>{{ book.genreName }}</td>
+          <td>
+            <span *ngFor="let author of book.authorList">{{ author }}</span>
+          </td>
           <td>
             <button
               class="btn btn-warning me-2 text-light fs-6 btn-sm"
-              (click)="openEditDialog('')"
+              (click)="openEditDialog(book.id)"
             >
               <mat-icon class="position-relative" style="top: 0.15em"
                 >edit</mat-icon

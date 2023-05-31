@@ -75,6 +75,10 @@ export class CreateBookComponent implements OnInit {
 
     this.form.value.id = this.data.id;
 
+    this.form.value.authorsId = this.form.value.authorsId!.filter(
+      (x: string) => x.length > 0
+    );
+
     this.data.isEdit
       ? await this.BookService.update(this.data.id, this.form.value)
       : await this.BookService.add(this.form.value);

@@ -1,7 +1,13 @@
 <div class="p-4">
   <div class="d-flex justify-content-between">
     <h4 class="fs-6">Genres</h4>
-    <button mat-button class="btn btn-success text-light fs-6">Create</button>
+    <button
+      mat-button
+      class="btn btn-success text-light fs-6"
+      (click)="openDialog()"
+    >
+      Create
+    </button>
   </div>
   <div class="d-flex justify-content-center mt-4">
     <table class="table table-striped shadow w-50">
@@ -18,6 +24,7 @@
             <button
               mat-button
               class="btn btn-warning me-2 text-light fs-6 btn-sm"
+              (click)="openEditDialog('1')"
             >
               <mat-icon class="position-relative" style="top: 0.15em"
                 >edit</mat-icon

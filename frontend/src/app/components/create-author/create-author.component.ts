@@ -69,5 +69,21 @@ export class CreateAuthorComponent implements OnInit {
     });
   }
 
-  onSubmit = () => {};
+  onSubmit = () => {
+    if (!this.form.valid) return;
+
+    this.form.value.birthDate = new Date(
+      this.form.value.birthDate
+    ).toISOString();
+
+    this.form.value.id = this.data.id;
+
+    this.data.isEdit
+      ? this.authorService.update(this.data.id, this.form.value).then(() => {
+          this.dialogRef.close();
+        })
+      : this.authorService.add(this.form.value).then(() => {
+          this.dialogRef.close();
+        });
+  };
 }

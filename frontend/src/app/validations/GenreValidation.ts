@@ -1,5 +1,10 @@
+import { Injectable } from '@angular/core';
 import { Validator } from 'fluentvalidation-ts';
 import { IGenreRequest } from '../interfaces/Genre/IGenreRequest';
+
+@Injectable({
+  providedIn: 'root',
+})
 export class GenreValidation extends Validator<IGenreRequest> {
   constructor() {
     super();

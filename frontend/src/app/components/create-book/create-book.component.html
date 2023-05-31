@@ -13,7 +13,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" />
+      <input matInput formControlName="title" [ngModel]="book.title" />
       <mat-error *ngIf="hasError('title')">
         {{ getError("title") }}
       </mat-error>
@@ -24,6 +24,7 @@
         matInput
         formControlName="sypnosis"
         placeholder="Ex: Harry Potter show us the life of a young wizard."
+        [ngModel]="book.sypnosis"
       ></textarea>
       <mat-error *ngIf="hasError('sypnosis')">
         {{ getError("sypnosis") }}
@@ -35,6 +36,7 @@
         [matDatepicker]="picker"
         placeholder="Choose a release date"
         formControlName="releaseDate"
+        [ngModel]="book.releaseDate"
       />
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle
@@ -48,15 +50,18 @@
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Publisher</mat-label>
-      <input matInput formControlName="publisher" />
+      <input matInput formControlName="publisher" [ngModel]="book.publisher" />
       <mat-error *ngIf="hasError('publisher')">
         {{ getError("publisher") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Genres</mat-label>
-      <mat-select formControlName="genreId">
+      <mat-select formControlName="genreId" [ngModel]="book.genreId">
         <mat-option value="" selected>Select the Genres</mat-option>
+        <mat-option value="b3eb2e45-a6ca-4542-8f3a-d3aa59b873ab" selected
+          >Select the Genres</mat-option
+        >
       </mat-select>
       <mat-error *ngIf="hasError('genreId')">
         {{ getError("genreId") }}
@@ -66,7 +71,9 @@
       <mat-label>Authors</mat-label>
       <mat-select multiple formControlName="authorsId">
         <mat-option value="" selected>Select the Authors</mat-option>
-        <mat-option value="1" selected>Select the Authors</mat-option>
+        <mat-option value="f20f7981-63d0-4731-bdf0-56b998fa0daf" selected
+          >Select the Authors</mat-option
+        >
       </mat-select>
       <mat-error *ngIf="hasError('authorsId')">
         {{ getError("authorsId") }}
