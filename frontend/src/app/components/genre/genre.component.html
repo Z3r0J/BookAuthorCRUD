@@ -1,6 +1,6 @@
 <div class="p-4">
   <div class="d-flex justify-content-between">
-    <h4 class="fs-6">Genres</h4>
+    <h4>Genres</h4>
     <button
       mat-button
       class="btn btn-success text-light fs-6"
@@ -14,24 +14,30 @@
       <thead class="mat-toolbar mat-primary text-light fs-6">
         <tr>
           <th>Name</th>
+          <th>Book Counts</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Romantic</td>
+        <tr *ngFor="let genre of genres">
+          <td>{{ genre.name }}</td>
+          <td>{{ genre.bookCount }}</td>
           <td>
             <button
               mat-button
               class="btn btn-warning me-2 text-light fs-6 btn-sm"
-              (click)="openEditDialog('1')"
+              (click)="openEditDialog(genre.id)"
             >
               <mat-icon class="position-relative" style="top: 0.15em"
                 >edit</mat-icon
               >
               Edit
             </button>
-            <button mat-button class="btn btn-danger btn-sm fs-6">
+            <button
+              mat-button
+              class="btn btn-danger btn-sm fs-6"
+              (click)="openDeleteDialog(genre.id)"
+            >
               <mat-icon class="position-relative" style="top: 0.15em"
                 >delete_forever</mat-icon
               >

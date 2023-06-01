@@ -26,11 +26,7 @@
       >
         {{ data.isEdit ? "Edit" : "Create" }}
       </button>
-      <button
-        mat-raised-button
-        class="btn btn-danger btn-sm"
-        (click)="dialogRef.close()"
-      >
+      <button mat-raised-button class="btn btn-danger btn-sm" mat-dialog-close>
         Cancel
       </button>
     </div>

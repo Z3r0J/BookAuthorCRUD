@@ -5,6 +5,7 @@ import { IGenreRequest } from 'src/app/interfaces/Genre/IGenreRequest';
 import { GenreService } from 'src/app/services/genre.service';
 import { GenreValidation } from 'src/app/validations/GenreValidation';
 import { addValidationObject } from 'src/app/validations/addValidationObject';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-genre',
@@ -36,10 +37,7 @@ export class CreateGenreComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.isEdit) {
       this.genreService.getById(this.data.id!).then((value) => {
-        this.genre = {
-          id: value.id,
-          name: value.name,
-        };
+        this.form.patchValue(value);
       });
     }
 
@@ -55,15 +53,29 @@ export class CreateGenreComponent implements OnInit {
 
   closeDialog = () => this.dialogRef.close();
 
-  onSubmit = async () => {
+  onSubmit = () => {
     if (this.form.invalid) return;
 
-    this.form.value.id = this.genre.id;
+    this.form.value.id = this.data.id;
 
     this.data.isEdit
-      ? await this.genreService.update(this.genre.id!, this.form.value)
-      : await this.genreService.add(this.form.value);
-
-    this.closeDialog();
+      ? this.genreService.update(this.data.id!, this.form.value).then(() => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'The genre was updated successfully.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+          });
+          this.closeDialog();
+        })
+      : this.genreService.add(this.form.value).then(() => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'The genre was created successfully.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+          });
+          this.closeDialog();
+        });
   };
 }

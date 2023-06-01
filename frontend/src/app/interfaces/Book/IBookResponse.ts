@@ -1,3 +1,5 @@
+import { IBasicAuthor } from '../Author/IBasicAuthor';
+
 export interface IBookResponse {
   id: string;
   title: string;
@@ -6,5 +8,5 @@ export interface IBookResponse {
   publisher: string;
   genreId: string;
   genreName: string;
-  authorList: string[];
+  authorList: IBasicAuthor[];
 }

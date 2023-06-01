@@ -8,7 +8,19 @@
     Edit a Book
   </h4>
 </div>
-<div mat-dialog-content class="p-3">
+<div mat-dialog-content *ngIf="genres.length === 0 || authors.length === 0">
+  <div class="d-flex justify-content-center h-50">
+    <mat-icon style="font-size: 48px; height: 48px; width: 48px; color: #005f7f"
+      >info</mat-icon
+    >
+  </div>
+  <p class="text-center">You need to create a genre and an author first.</p>
+</div>
+<div
+  mat-dialog-content
+  class="p-3"
+  *ngIf="genres.length > 0 && authors.length > 0"
+>
   <p>Fill out the form.</p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-100">

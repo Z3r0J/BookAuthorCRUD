@@ -19,6 +19,7 @@ import { AuthorComponent } from 'src/app/components/author/author.component';
 import { CreateAuthorComponent } from 'src/app/components/create-author/create-author.component';
 import { GenreComponent } from 'src/app/components/genre/genre.component';
 import { CreateGenreComponent } from 'src/app/components/create-genre/create-genre.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { CreateGenreComponent } from 'src/app/components/create-genre/create-gen
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

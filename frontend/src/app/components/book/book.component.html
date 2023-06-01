@@ -25,7 +25,9 @@
           <td>{{ book.publisher }}</td>
           <td>{{ book.genreName }}</td>
           <td>
-            <span *ngFor="let author of book.authorList">{{ author }}</span>
+            <span *ngFor="let author of book.authorList">{{
+              author.Name
+            }}</span>
           </td>
           <td>
             <button

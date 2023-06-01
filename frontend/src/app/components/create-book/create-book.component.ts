@@ -39,6 +39,9 @@ export class CreateBookComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.isEdit) {
       this.BookService.getById(this.data.id).then((book) => {
+        this.form.controls['authorsId'].setValue(
+          book.authorList.map((x) => x.Id)
+        );
         this.form.patchValue(book);
       });
     }
