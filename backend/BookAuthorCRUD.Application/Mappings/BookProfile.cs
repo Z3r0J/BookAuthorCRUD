@@ -19,11 +19,13 @@ public class BookProfile : Profile
                 opt =>
                     opt.MapFrom(
                         x =>
-                            x.Authors
-                                .Select(x => $"{x.Author.FirstName} {x.Author.LastName}")
-                                .ToList() ?? new()
+                            x.Authors.Select(
+                                a => new Dictionary<string, string> { { "Id", a.Author.Id.ToString() },{ "Name", $"{a.Author.FirstName} {a.Author.LastName}"} }
+                            ).ToList()
+                            ?? new()
                     )
-            ).ForMember(x=>x.GenreName,opt=>opt.MapFrom(b=>b.Genre.Name??""));
+            )
+            .ForMember(x => x.GenreName, opt => opt.MapFrom(b => b.Genre.Name ?? ""));
         ;
 
         CreateMap<CreateBookCommand, BookRequest>().ReverseMap();

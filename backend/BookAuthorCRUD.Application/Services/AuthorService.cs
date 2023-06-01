@@ -56,7 +56,7 @@ public class AuthorService : IAuthorService
         var book = await _authorRepository.GetById(id);
 
         if (book is null)
-            throw new Exception("Book not found");
+            throw new Exception("Author was not found");
 
         _authorRepository.Delete(book);
 
@@ -91,7 +91,7 @@ public class AuthorService : IAuthorService
         var author = await _authorRepository.GetById(Id);
 
         if (author is null)
-            return new Result<bool>(new ValidationException("Books not found"));
+            return new Result<bool>(new ValidationException("Author was not found"));
 
         author.Update(
             bookRequest.FirstName,

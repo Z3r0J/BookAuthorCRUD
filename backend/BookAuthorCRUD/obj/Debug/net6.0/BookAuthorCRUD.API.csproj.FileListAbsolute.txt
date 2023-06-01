@@ -99,3 +99,11 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.genruntimeconfig.cache
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\ref\BookAuthorCRUD.API.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Humanizer.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
