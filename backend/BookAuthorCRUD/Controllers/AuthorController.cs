@@ -12,9 +12,17 @@ namespace BookAuthorCRUD.API.Controllers
     public class AuthorController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string? name = null)
         {
-            return Ok(await Mediator.Send(new GetAllAuthorQuery()));
+            var response = await Mediator.Send(new GetAllAuthorQuery());
+
+            return Ok(
+                response.Where(
+                    x =>
+                        name == null
+                        || $"{x.FirstName} {x.LastName}".ToLower().Contains(name.ToLower())
+                )
+            );
         }
 
         [HttpGet("{id:guid}")]
@@ -47,9 +55,8 @@ namespace BookAuthorCRUD.API.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateAuthor(Guid id,UpdateAuthorCommand command)
+        public async Task<IActionResult> UpdateAuthor(Guid id, UpdateAuthorCommand command)
         {
-
             if (command.Id != id)
             {
                 return BadRequest("The Id in the Entity doesn't match with the provide in the URL");

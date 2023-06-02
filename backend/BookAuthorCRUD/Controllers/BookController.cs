@@ -11,8 +11,14 @@ namespace BookAuthorCRUD.API.Controllers
     public class BookController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllBook() =>
-            Ok(await Mediator.Send(new GetAllBookQuery()));
+        public async Task<IActionResult> GetAllBook(string? title = null)
+        {
+            var response = await Mediator.Send(new GetAllBookQuery());
+
+            return Ok(
+                response.Where(x => title == null || x.Title.ToLower().Contains(title.ToLower()))
+            );
+        }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetBookById(Guid id) =>
@@ -38,7 +44,6 @@ namespace BookAuthorCRUD.API.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateBook(Guid id, UpdateBookCommand command)
         {
-
             if (command.Id != id)
             {
                 return BadRequest("The Id in the Entity doesn't match with the provide in the URL");
@@ -59,13 +64,11 @@ namespace BookAuthorCRUD.API.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-
-        public async Task<IActionResult> DeleteBook(Guid id) {
-
+        public async Task<IActionResult> DeleteBook(Guid id)
+        {
             await Mediator.Send(new DeleteBookCommand(id));
 
             return NoContent();
-        
         }
     }
 }
