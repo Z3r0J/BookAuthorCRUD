@@ -4,6 +4,7 @@ import { CreateGenreComponent } from '../create-genre/create-genre.component';
 import { IGenreResponse } from 'src/app/interfaces/Genre/IGenreResponse';
 import { GenreService } from 'src/app/services/genre.service';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-genre',
@@ -14,6 +15,10 @@ export class GenreComponent implements OnInit {
   constructor(public dialog: MatDialog, private genreService: GenreService) {}
 
   genres: IGenreResponse[] = [];
+  timeout: any;
+  searchForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
 
   openDialog = () =>
     this.dialog.open(CreateGenreComponent, {
@@ -60,7 +65,21 @@ export class GenreComponent implements OnInit {
       }
     });
 
+  searchGenre = (value: string) => {
+    clearTimeout(this.timeout);
+
+    this.timeout = setTimeout(() => {
+      this.genreService.getAll(value).then((data) => (this.genres = data));
+    }, 3000);
+  };
+
   ngOnInit(): void {
+    window.document.title = 'Genre - Book App';
+
+    this.searchForm.valueChanges.subscribe((values: any) => {
+      this.searchGenre(values.name);
+    });
+
     this.getGenres();
 
     this.dialog.afterAllClosed.subscribe(() => {

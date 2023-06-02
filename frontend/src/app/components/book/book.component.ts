@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { BookService } from 'src/app/services/book.service';
 import Swal from 'sweetalert2';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,10 @@ export class BookComponent implements OnInit {
   constructor(private dialog: MatDialog, private bookService: BookService) {}
 
   books: IBookResponse[] = [];
+  timeout: any;
+  search: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
 
   openCreateDialog = () =>
     this.dialog.open(CreateBookComponent, {
@@ -25,6 +30,16 @@ export class BookComponent implements OnInit {
     this.bookService.getAll().then((books) => {
       this.books = books;
     });
+  };
+
+  searchBook = (value: string) => {
+    clearTimeout(this.timeout);
+
+    this.timeout = setTimeout(() => {
+      this.bookService.getAll(value).then((books) => {
+        this.books = books;
+      });
+    }, 3000);
   };
 
   openEditDialog = (id: string) =>
@@ -50,6 +65,9 @@ export class BookComponent implements OnInit {
     });
 
   ngOnInit(): void {
+    this.search.valueChanges.subscribe((values: any) => {
+      this.searchBook(values.name);
+    });
     this.getBooks();
     window.document.title = 'Book - Book App';
     this.dialog.afterAllClosed.subscribe(() => {

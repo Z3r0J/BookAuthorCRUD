@@ -8,8 +8,12 @@ import { axiosConfig } from './axios.config';
   providedIn: 'root',
 })
 export class GenreService implements IServices<IGenreResponse, IGenreRequest> {
-  async getAll(): Promise<IGenreResponse[]> {
-    const response = await axiosConfig.get('/genre');
+  async getAll(name?: string): Promise<IGenreResponse[]> {
+    const response = await axiosConfig.get('/genre', {
+      params: {
+        name,
+      },
+    });
 
     return response.data as IGenreResponse[];
   }

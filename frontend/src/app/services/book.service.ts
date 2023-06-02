@@ -9,8 +9,12 @@ import { axiosConfig } from './axios.config';
   providedIn: 'root',
 })
 export class BookService implements IServices<IBookResponse, IBookRequest> {
-  async getAll(): Promise<IBookResponse[]> {
-    const response = await axiosConfig.get('/book');
+  async getAll(name?: string): Promise<IBookResponse[]> {
+    const response = await axiosConfig.get('/book', {
+      params: {
+        title: name,
+      },
+    });
     if (response.status === 200) return response.data as IBookResponse[];
     return [] as IBookResponse[];
   }

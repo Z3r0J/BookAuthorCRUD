@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateAuthorComponent } from '../create-author/create-author.component';
 import Swal from 'sweetalert2';
 import { AuthorService } from 'src/app/services/author.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-author',
@@ -17,6 +18,10 @@ export class AuthorComponent implements OnInit {
   ) {}
 
   authors: IAuthorResponse[] = [];
+  timeout: any;
+  searchForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
 
   openDialog = () =>
     this.dialog.open(CreateAuthorComponent, {
@@ -29,6 +34,16 @@ export class AuthorComponent implements OnInit {
       width: '500px',
       data: { id: id, isEdit: true },
     });
+
+  searchAuthor = (value: string) => {
+    clearTimeout(this.timeout);
+
+    this.timeout = setTimeout(() => {
+      this.authorService.getAll(value).then((authors) => {
+        this.authors = authors;
+      });
+    }, 3000);
+  };
 
   openDeleteDialog = (id: string) =>
     Swal.fire({
@@ -66,6 +81,12 @@ export class AuthorComponent implements OnInit {
     );
 
   ngOnInit(): void {
+    this.searchForm.valueChanges.subscribe((values: any) => {
+      this.searchAuthor(values.name);
+    });
+
+    window.document.title = 'Author - Book App';
+
     this.getData();
     this.dialog.afterAllClosed.subscribe(() => {
       this.getData();

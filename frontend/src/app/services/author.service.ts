@@ -10,8 +10,12 @@ import { axiosConfig } from './axios.config';
 export class AuthorService
   implements IServices<IAuthorResponse, IAuthorRequest>
 {
-  async getAll(): Promise<IAuthorResponse[]> {
-    const response = await axiosConfig.get('/author');
+  async getAll(name?: string): Promise<IAuthorResponse[]> {
+    const response = await axiosConfig.get('/author', {
+      params: {
+        name,
+      },
+    });
     if (response.status === 200) return response.data as IAuthorResponse[];
     return [] as IAuthorResponse[];
   }

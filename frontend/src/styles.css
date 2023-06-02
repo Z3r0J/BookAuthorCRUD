@@ -12,3 +12,11 @@ body {
 .mat-toolbar.mat-primary {
   background: linear-gradient(90deg, #005f7f, #5fd0df 133.7%);
 }
+
+.input {
+  box-shadow: none !important;
+}
+.input:hover {
+  border: 1.5px solid #5fd0df !important;
+  box-shadow: none !important;
+}
