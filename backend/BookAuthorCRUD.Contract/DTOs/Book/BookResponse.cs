@@ -17,5 +17,5 @@ public record BookResponse
     public string Publisher { get; init; }
     public Guid GenreId { get; init; }
     public string? GenreName { get; init; }
-    public List<string>? AuthorList { get; init; }
+    public List<Dictionary<string,string>>? AuthorList { get; init; }
 }

@@ -9,4 +9,5 @@ public interface IAuthorRepository
     void Delete(Author author);
     Task<List<Author>> GetAllAuthor(CancellationToken cancellationToken = default);
     Task<Author?> GetById(Guid id, CancellationToken cancellationToken = default);
+    Task<List<Guid>> ExistAuthor(List<Guid> authorIds, CancellationToken cancellationToken = default);
 }

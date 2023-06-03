@@ -1,0 +1,84 @@
+<div class="p-4">
+  <div class="d-flex justify-content-between">
+    <form [formGroup]="search" class="card">
+      <div class="card-header mat-toolbar mat-primary text-light">
+        <mat-icon class="me-2 position-relative" style="top: 0.2em"
+          >search</mat-icon
+        >
+        Filter Books
+      </div>
+      <input
+        mat-input
+        type="text"
+        class="form-control input outline-none"
+        placeholder="Search Book by title"
+        formControlName="name"
+      />
+    </form>
+    <button class="btn btn-dark h-50" (click)="openCreateDialog()">
+      Create
+    </button>
+  </div>
+
+  <div class="card w-50" style="margin: 0 auto" *ngIf="books.length === 0">
+    <div class="card-header mat-toolbar mat-primary">No Books</div>
+    <div class="card-body">
+      <p class="card-text">
+        <mat-icon class="me-2 position-relative" style="top: 0.2em"
+          >info</mat-icon
+        >
+        There are no books in the database. Click the create button to add one.
+      </p>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4" *ngIf="books.length > 0">
+    <table class="table table-striped shadow-sm">
+      <thead class="mat-toolbar mat-primary text-light fs-6">
+        <tr>
+          <th>Title</th>
+          <th>Sypnosis</th>
+          <th>Release Date</th>
+          <th>Publisher</th>
+          <th>Genre</th>
+          <th>Authors</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.title }}</td>
+          <td>{{ book.sypnosis }}</td>
+          <td>{{ book.releaseDate }}</td>
+          <td>{{ book.publisher }}</td>
+          <td>{{ book.genreName }}</td>
+          <td>
+            <span *ngFor="let author of book.authorList">{{
+              author.Name
+            }}</span>
+          </td>
+          <td>
+            <button
+              class="btn btn-warning me-2 text-light fs-6 btn-sm"
+              (click)="openEditDialog(book.id)"
+            >
+              <mat-icon class="position-relative" style="top: 0.15em"
+                >edit</mat-icon
+              >
+              Edit
+            </button>
+            <button
+              class="btn btn-danger btn-sm fs-6"
+              (click)="openDeleteDialog(book.id)"
+            >
+              <mat-icon class="position-relative" style="top: 0.15em"
+                >delete_forever</mat-icon
+              >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

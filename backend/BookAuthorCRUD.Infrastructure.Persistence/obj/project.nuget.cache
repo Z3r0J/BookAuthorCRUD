@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e5YXgK3NYEjAepgacux3bE2RJm35JVl2pMFmgozjc5ShZPK7H1lWXtlffY2LoL81Jayu2I1LyVEmaDAwOKhCAg==",
+  "dgSpecHash": "Rz+u9kYVL6sJgwJmxG35+48QKkzjJjXDXw9iwyYpvORJZ75UYXys4dIGZTdR5/c712S7YJc/Ju+8ZhrVIeFH5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Infrastructure.Persistence\\BookAuthorCRUD.Infrastructure.Persistence.csproj",
   "expectedPackageFiles": [
