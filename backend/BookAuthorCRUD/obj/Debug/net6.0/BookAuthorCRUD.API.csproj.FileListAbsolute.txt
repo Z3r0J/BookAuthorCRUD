@@ -11,6 +11,7 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Humanizer.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\LanguageExt.Core.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\MediatR.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\MediatR.Contracts.dll
@@ -19,6 +20,7 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
@@ -28,6 +30,7 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
@@ -44,10 +47,12 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Mono.TextTemplating.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.CodeDom.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
@@ -55,6 +60,8 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Runtime.Caching.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Windows.Extensions.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -67,16 +74,15 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Application.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Contract.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Domain.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Infrastructure.Persistence.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Test.dll
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Application.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Contract.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Infrastructure.Persistence.pdb
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Test.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\BookAuthorCRUD.Domain.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.csproj.AssemblyReference.cache
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.GeneratedMSBuildEditorConfig.editorconfig
@@ -99,11 +105,3 @@ C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.pdb
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\BookAuthorCRUD.API.genruntimeconfig.cache
 C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\obj\Debug\net6.0\ref\BookAuthorCRUD.API.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Humanizer.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\Mono.TextTemplating.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\admin\source\test-hahn-software\backend\BookAuthorCRUD\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

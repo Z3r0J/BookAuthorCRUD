@@ -2,6 +2,7 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using LanguageExt;
@@ -52,7 +53,7 @@ public class BookServices : IBookService
             var authorsId = await _authorRepository.ExistAuthor(bookRequest.AuthorsId);
 
             if (authorsId.Count == 0)
-                throw new Exception("Authors not found");
+                throw new NotFoundException("Authors not found",bookRequest.AuthorsId);
 
             authorsId
                 .Select(authorId => BookAuthor.Create(authorId, book.Id))
@@ -72,7 +73,7 @@ public class BookServices : IBookService
         var book = await _bookRepository.GetById(id);
 
         if (book is null)
-            throw new Exception("Book not found");
+            throw new NotFoundException("Book not found", id);
 
         _bookRepository.Delete(book);
 
@@ -82,6 +83,9 @@ public class BookServices : IBookService
     public async Task<BookResponse> GetByIdAsync(Guid id)
     {
         var book = await _bookRepository.GetById(id);
+
+        if (book is null)
+            throw new NotFoundException("Book not found", id);
 
         return _mapper.Map<BookResponse>(book);
     }
@@ -116,7 +120,7 @@ public class BookServices : IBookService
             var authorsId = await _authorRepository.ExistAuthor(bookRequest.AuthorsId);
 
             if (authorsId.Count == 0)
-                throw new Exception("Authors not found");
+                throw new NotFoundException("Authors not found",bookRequest.AuthorsId);
 
             await _bookAuthorRepository.DeleteAuthors(Id);
 
@@ -129,7 +133,7 @@ public class BookServices : IBookService
         var book = await _bookRepository.GetById(Id);
 
         if (book is null)
-            throw new Exception("Book not found");
+            throw new NotFoundException("Book not found",Id);
 
         book.Update(
             bookRequest.Title,

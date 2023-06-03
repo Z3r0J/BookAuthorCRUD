@@ -3,6 +3,7 @@ using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Contract.DTOs.Genre;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using LanguageExt.Common;
@@ -52,7 +53,7 @@ public class GenreService : IGenreService
         var genre = await _genreRepository.GetById(id);
 
         if (genre is null)
-            throw new Exception("Book not found");
+            throw new NotFoundException("Genre not found",id);
 
         _genreRepository.Delete(genre);
 
@@ -62,6 +63,9 @@ public class GenreService : IGenreService
     public async Task<GenreResponse> GetByIdAsync(Guid id)
     {
         var genre = await _genreRepository.GetById(id);
+
+        if (genre is null)
+            throw new NotFoundException("Genre not found", id);
 
         return _mapper.Map<GenreResponse>(genre);
     }
@@ -87,7 +91,7 @@ public class GenreService : IGenreService
         var genre = await _genreRepository.GetById(Id);
 
         if (genre is null)
-            throw new Exception("Genre not found");
+            throw new NotFoundException("Genre not found",genreRequest);
 
         genre.Update(
             genreRequest.Name

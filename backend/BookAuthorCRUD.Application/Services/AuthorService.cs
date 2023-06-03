@@ -2,6 +2,7 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Author;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
@@ -53,12 +54,12 @@ public class AuthorService : IAuthorService
 
     public async Task Delete(Guid id)
     {
-        var book = await _authorRepository.GetById(id);
+        var author = await _authorRepository.GetById(id);
 
-        if (book is null)
-            throw new Exception("Author was not found");
+        if (author is null)
+            throw new NotFoundException("Author was not found",id);
 
-        _authorRepository.Delete(book);
+        _authorRepository.Delete(author);
 
         await _unitOfWork.SaveChangesAsync();
     }
@@ -66,6 +67,9 @@ public class AuthorService : IAuthorService
     public async Task<AuthorResponse> GetByIdAsync(Guid id)
     {
         var author = await _authorRepository.GetById(id);
+
+        if (author is null)
+            throw new NotFoundException("Author was not found",id);
 
         return _mapper.Map<AuthorResponse>(author);
     }
@@ -77,9 +81,9 @@ public class AuthorService : IAuthorService
         return _mapper.Map<List<AuthorResponse>>(authors);
     }
 
-    public async Task<Result<bool>> Update(Guid Id, AuthorRequest bookRequest)
+    public async Task<Result<bool>> Update(Guid Id, AuthorRequest authorRequest)
     {
-        var result = await _authorValidator.ValidateAsync(bookRequest);
+        var result = await _authorValidator.ValidateAsync(authorRequest);
 
         if(!result.IsValid)
         {
@@ -91,14 +95,14 @@ public class AuthorService : IAuthorService
         var author = await _authorRepository.GetById(Id);
 
         if (author is null)
-            return new Result<bool>(new ValidationException("Author was not found"));
+            throw new NotFoundException("Author was not found", authorRequest);
 
         author.Update(
-            bookRequest.FirstName,
-            bookRequest.LastName,
-            bookRequest.Address,
-            bookRequest.Email,
-            bookRequest.BirthDate
+            authorRequest.FirstName,
+            authorRequest.LastName,
+            authorRequest.Address,
+            authorRequest.Email,
+            authorRequest.BirthDate
             );
 
         _authorRepository.Update(author);

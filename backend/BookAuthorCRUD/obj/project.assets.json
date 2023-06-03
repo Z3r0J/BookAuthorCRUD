@@ -1743,16 +1743,6 @@
         "runtime": {
           "bin/placeholder/BookAuthorCRUD.Infrastructure.Persistence.dll": {}
         }
-      },
-      "BookAuthorCRUD.Test/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BookAuthorCRUD.Test.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BookAuthorCRUD.Test.dll": {}
-        }
       }
     }
   },
@@ -5503,19 +5493,14 @@
       "type": "project",
       "path": "../BookAuthorCRUD.Infrastructure.Persistence/BookAuthorCRUD.Infrastructure.Persistence.csproj",
       "msbuildProject": "../BookAuthorCRUD.Infrastructure.Persistence/BookAuthorCRUD.Infrastructure.Persistence.csproj"
-    },
-    "BookAuthorCRUD.Test/1.0.0": {
-      "type": "project",
-      "path": "../BookAuthorCRUD.Test/BookAuthorCRUD.Test.csproj",
-      "msbuildProject": "../BookAuthorCRUD.Test/BookAuthorCRUD.Test.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "BookAuthorCRUD.Application >= 1.0.0",
       "BookAuthorCRUD.Contract >= 1.0.0",
+      "BookAuthorCRUD.Domain >= 1.0.0",
       "BookAuthorCRUD.Infrastructure.Persistence >= 1.0.0",
-      "BookAuthorCRUD.Test >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Versioning >= 5.1.0",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.5",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.0",
@@ -5563,11 +5548,11 @@
             "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Contract\\BookAuthorCRUD.Contract.csproj": {
               "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Contract\\BookAuthorCRUD.Contract.csproj"
             },
+            "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Domain\\BookAuthorCRUD.Domain.csproj": {
+              "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Domain\\BookAuthorCRUD.Domain.csproj"
+            },
             "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Infrastructure.Persistence\\BookAuthorCRUD.Infrastructure.Persistence.csproj": {
               "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Infrastructure.Persistence\\BookAuthorCRUD.Infrastructure.Persistence.csproj"
-            },
-            "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Test\\BookAuthorCRUD.Test.csproj": {
-              "projectPath": "C:\\Users\\admin\\source\\test-hahn-software\\backend\\BookAuthorCRUD.Test\\BookAuthorCRUD.Test.csproj"
             }
           }
         }

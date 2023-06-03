@@ -1,3 +1,4 @@
+using BookAuthorCRUD.API.Middlewares;
 using BookAuthorCRUD.Application;
 using BookAuthorCRUD.Contract;
 using BookAuthorCRUD.Infrastructure.Persistence;
@@ -20,12 +21,16 @@ builder.Services.AddApiVersioning(config =>
     config.ReportApiVersions = true;
 });
 
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 builder.Services.AddCors(
     x => x.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod())
 );
 ;
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
