@@ -361,17 +361,19 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-.vs/
+./.vs/
 
 # Personal settings
 
-BookAuthorCRUD.Test/[Oo]bj
-BookAuthorCRUD.Test/[Bb]in
-BookAuthorCRUD/[Oo]bj
-BookAuthorCRUD/[Bb]in
-BookAuthorCRUD.Application/[Oo]bj
-BookAuthorCRUD.Application/[Bb]in
-BookAuthorCRUD.Domain/[Oo]bj
-BookAuthorCRUD.Domain/[Bb]in
-BookAuthorCRUD.Infrastructure.Persistence/[Oo]bj
-BookAuthorCRUD.Infrastructure.Persistence/[Bb]in
+BookAuthorCRUD.Test/obj
+BookAuthorCRUD.Test/bin
+BookAuthorCRUD/obj
+BookAuthorCRUD/bin
+BookAuthorCRUD.Application/obj
+BookAuthorCRUD.Application/bin
+BookAuthorCRUD.Domain/obj
+BookAuthorCRUD.Domain/bin
+BookAuthorCRUD.Infrastructure.Persistence/obj
+BookAuthorCRUD.Infrastructure.Persistence/bin
+BookAuthorCRUD.Contract/obj
+BookAuthorCRUD.Contract/bin
