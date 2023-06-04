@@ -26,9 +26,9 @@ namespace BookAuthorCRUD.Domain.Entities
             return genre;
         }
 
-        public void Update(string name)
+        public void Update(string? name =null)
         {
-            Name = name;
+            Name = name??Name;
         }
 
         public void AddBooks(Book book)

@@ -10,7 +10,11 @@ public class AuthorProfile : Profile
 {
     public AuthorProfile()
     {
-        CreateMap<AuthorResponse, Author>().ForMember(x => x.Books, opt => opt.Ignore());
+        CreateMap<AuthorResponse, Author>()
+            .ForMember(x => x.CreatedAt, opt => opt.Ignore())
+            .ForMember(x => x.UpdatedAt, opt => opt.Ignore())
+            .ForMember(x => x.Books, opt => opt.Ignore());
+
         CreateMap<Author, AuthorResponse>()
             .ForMember(x => x.BookCount, opt => opt.MapFrom(p => p.Books.Count));
 
@@ -20,6 +24,8 @@ public class AuthorProfile : Profile
         CreateMap<BookAuthorResponse, BookAuthor>()
             .ForMember(x => x.Book, opt => opt.Ignore())
             .ForMember(x => x.Author, opt => opt.Ignore())
+            .ForMember(x => x.CreatedAt, opt => opt.Ignore())
+            .ForMember(x => x.UpdatedAt, opt => opt.Ignore())
             .ReverseMap();
     }
 }

@@ -13,6 +13,8 @@ public class BookProfile : Profile
         CreateMap<BookResponse, Book>()
             .ForMember(x => x.Genre, opt => opt.Ignore())
             .ForMember(x => x.Authors, opt => opt.Ignore())
+            .ForMember(x => x.CreatedAt, opt => opt.Ignore())
+            .ForMember(x => x.UpdatedAt, opt => opt.Ignore())
             .ReverseMap()
             .ForMember(
                 x => x.AuthorList,
