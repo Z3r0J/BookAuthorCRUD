@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using BookAuthorCRUD.Application.Interface;
-using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Contract.DTOs.Genre;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Events.Genre;
 using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using LanguageExt.Common;
+using MediatR;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -16,13 +17,15 @@ public class GenreService : IGenreService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IValidator<GenreRequest> _genreValidator;
+    private readonly IPublisher _publisher;
 
-    public GenreService(IGenreRepository genreRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<GenreRequest> genreValidator)
+    public GenreService(IGenreRepository genreRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<GenreRequest> genreValidator, IPublisher publisher)
     {
         _genreRepository = genreRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _genreValidator = genreValidator;
+        _publisher = publisher;
     }
 
     public async Task<Result<GenreResponse>> Add(GenreRequest genreRequest)
@@ -45,6 +48,8 @@ public class GenreService : IGenreService
 
         await _unitOfWork.SaveChangesAsync();
 
+        await _publisher.Publish(new GenreCreatedEvent(genre));
+
         return _mapper.Map<GenreResponse>(genre);
     }
 
@@ -58,6 +63,8 @@ public class GenreService : IGenreService
         _genreRepository.Delete(genre);
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _publisher.Publish(new GenreDeletedEvent(genre));
     }
 
     public async Task<GenreResponse> GetByIdAsync(Guid id)

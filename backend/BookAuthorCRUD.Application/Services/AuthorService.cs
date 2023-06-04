@@ -2,11 +2,13 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Author;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Events.Author;
 using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
 using LanguageExt.Common;
+using MediatR;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -16,13 +18,15 @@ public class AuthorService : IAuthorService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IValidator<AuthorRequest> _authorValidator;
+    private readonly IPublisher _publisher;
 
-    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<AuthorRequest> authorValidator)
+    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<AuthorRequest> authorValidator, IPublisher publisher)
     {
         _authorRepository = authorRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _authorValidator = authorValidator;
+        _publisher = publisher;
     }
 
     public async Task<Result<AuthorResponse>> Add(AuthorRequest authorRequest)
@@ -49,6 +53,8 @@ public class AuthorService : IAuthorService
 
         await _unitOfWork.SaveChangesAsync();
 
+        await _publisher.Publish(new AuthorCreatedEvent(author));
+
         return new Result<AuthorResponse>(_mapper.Map<AuthorResponse>(author));
     }
 
@@ -62,6 +68,8 @@ public class AuthorService : IAuthorService
         _authorRepository.Delete(author);
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _publisher.Publish(new AuthorDeletedEvent(author));
     }
 
     public async Task<AuthorResponse> GetByIdAsync(Guid id)

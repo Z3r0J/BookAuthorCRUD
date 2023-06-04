@@ -13,6 +13,8 @@ public sealed class Author : AuditableBaseEntity
     public DateTime BirthDate { get; private set; } = DateTime.UtcNow;
     public IReadOnlyCollection<BookAuthor> Books => _bookAuthors;
 
+    public Author() { }
+
     private Author(
         Guid id,
         string firstName,

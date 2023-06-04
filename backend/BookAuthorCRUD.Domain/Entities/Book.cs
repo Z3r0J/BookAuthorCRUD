@@ -14,6 +14,7 @@ namespace BookAuthorCRUD.Domain.Entities
         public Genre Genre { get; private set; }
         public IReadOnlyCollection<BookAuthor> Authors => _bookAuthors;
 
+        public Book() { }
         private Book(
             Guid id,
             string title,

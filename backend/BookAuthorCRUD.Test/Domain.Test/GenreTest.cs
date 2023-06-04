@@ -4,6 +4,20 @@ namespace BookAuthorCRUD.Test.Domain.Test
 {
     public class GenreTest
     {
+
+        [Fact]
+
+        public void ShouldCreateBookUsingEmptyConstructor()
+        {
+            // Arrange
+            var genre = new Genre();
+
+            // Act
+
+            // Assert
+            Assert.IsType<Genre>(genre);
+        }
+
         [Fact]
         public void ShouldCreateANewGenre()
         {

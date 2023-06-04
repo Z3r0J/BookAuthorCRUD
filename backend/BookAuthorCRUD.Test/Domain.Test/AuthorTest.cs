@@ -16,7 +16,20 @@ namespace BookAuthorCRUD.Test.Domain.Test
         }
 
         [Fact]
-        public void ShouldCreateAuthor()
+
+        public void ShouldCreateAuthorUsingEmptyConstructor()
+        {
+            // Arrange
+            var author = new Author();
+
+            // Act
+
+            // Assert
+            Assert.IsType<Author>(author);
+        }
+
+        [Fact]
+        public void ShouldCreateANewAuthor()
         {
             // Arrange
             var author = new

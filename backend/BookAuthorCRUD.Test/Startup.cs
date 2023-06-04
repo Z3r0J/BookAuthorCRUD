@@ -4,6 +4,7 @@ using BookAuthorCRUD.Contract;
 using BookAuthorCRUD.Infrastructure.Persistence.Repository;
 using BookAuthorCRUD.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace BookAuthorCRUD.Test
 {
@@ -12,7 +13,11 @@ namespace BookAuthorCRUD.Test
         public static IServiceProvider ServiceProvider()
         {
             var services = new ServiceCollection();
-            var builder = new ConfigurationBuilder()
+            services.AddLogging(builder =>
+            {
+                builder.Services.Configure<LoggerFilterOptions>(options => options.MinLevel = LogLevel.Debug);
+            });
+            var configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(
                     new Dictionary<string, string>
                     {
@@ -20,7 +25,7 @@ namespace BookAuthorCRUD.Test
                     }!
                 )
                 .Build();
-            services.AddPersistence(builder);
+            services.AddPersistence(configuration);
             services.AddRepositories();
             services.AddContractServices();
             services.AddApplicationServices();

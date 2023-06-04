@@ -2,11 +2,13 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Events.Book;
 using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using LanguageExt;
 using LanguageExt.Common;
+using MediatR;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -18,8 +20,9 @@ public class BookServices : IBookService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IValidator<BookRequest> _bookValidator;
+    private readonly IPublisher _publisher;
 
-    public BookServices(IBookRepository bookRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<BookRequest> bookValidator, IAuthorRepository authorRepository, IBookAuthorRepository bookAuthorRepository)
+    public BookServices(IBookRepository bookRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<BookRequest> bookValidator, IAuthorRepository authorRepository, IBookAuthorRepository bookAuthorRepository, IPublisher publisher)
     {
         _bookRepository = bookRepository;
         _unitOfWork = unitOfWork;
@@ -27,6 +30,7 @@ public class BookServices : IBookService
         _bookValidator = bookValidator;
         _authorRepository = authorRepository;
         _bookAuthorRepository = bookAuthorRepository;
+        _publisher = publisher;
     }
 
     public async Task<Result<BookResponse>> Add(BookRequest bookRequest)
@@ -65,6 +69,8 @@ public class BookServices : IBookService
 
         await _unitOfWork.SaveChangesAsync();
 
+        await _publisher.Publish(new BookCreatedEvent(book));
+
         return new Result<BookResponse>(_mapper.Map<BookResponse>(book));
     }
 
@@ -78,6 +84,8 @@ public class BookServices : IBookService
         _bookRepository.Delete(book);
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _publisher.Publish(new BookDeletedEvent(book));
     }
 
     public async Task<BookResponse> GetByIdAsync(Guid id)

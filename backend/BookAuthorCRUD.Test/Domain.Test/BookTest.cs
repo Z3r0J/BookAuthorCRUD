@@ -9,6 +9,21 @@ namespace BookAuthorCRUD.Test.Domain.Test
 {
     public class BookTest
     {
+
+
+        [Fact]
+
+        public void ShouldCreateBookUsingEmptyConstructor()
+        {
+            // Arrange
+            var book = new Book();
+
+            // Act
+
+            // Assert
+            Assert.IsType<Book>(book);
+        }
+
         [Fact]
 
         public void ShouldCreateANewBook()
