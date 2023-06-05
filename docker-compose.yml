@@ -1,0 +1,20 @@
+version: "3.4"
+
+services:
+  bookauthorcrud.api:
+    image: ${DOCKER_REGISTRY-}bookauthorcrudapi
+    build:
+      context: ./backend
+      dockerfile: BookAuthorCRUD/Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
+  bookauthorcrud.frontend:
+    image: ${DOCKER_REGISTRY-}bookauthorcrudfrontend
+    depends_on:
+      - bookauthorcrud.api
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"

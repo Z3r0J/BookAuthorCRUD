@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  bookauthorcrud.api:
-    image: ${DOCKER_REGISTRY-}bookauthorcrudapi
-    build:
-      context: .
-      dockerfile: BookAuthorCRUD/Dockerfile
