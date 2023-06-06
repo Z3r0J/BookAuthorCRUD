@@ -16,7 +16,14 @@ namespace BookAuthorCRUD.Infrastructure.Persistence
         {
             #region Database Configuration
 
-            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            bool? useInMemoryEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_USEINMEMORY")?.ToLower() switch
+            {
+                "true" => true,
+                "false" => false,
+                _ => null
+            };
+
+            if (useInMemoryEnvironment ?? configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
 
                 services.AddDbContext<ApplicationContext>(
@@ -28,7 +35,7 @@ namespace BookAuthorCRUD.Infrastructure.Persistence
                 services.AddDbContext<ApplicationContext>(
                     opt =>
                         opt.UseSqlServer(
-                            configuration.GetConnectionString("DefaultConnection"),
+                            Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTIONSTRING") ?? configuration.GetConnectionString("DefaultConnection"),
                             m => m.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)
                         )
                 );

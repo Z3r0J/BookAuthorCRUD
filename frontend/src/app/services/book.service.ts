@@ -3,7 +3,7 @@ import { IBookRequest } from '../interfaces/Book/IBookRequest';
 import { IBookResponse } from '../interfaces/Book/IBookResponse';
 import { IServices } from '../interfaces/services/IServices';
 import axios from 'axios';
-import { axiosConfig } from './axios.config';
+import { axiosConfig } from '../helpers/axios.config';
 
 @Injectable({
   providedIn: 'root',

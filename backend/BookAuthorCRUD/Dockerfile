@@ -6,6 +6,8 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="${PATH}:/root/.dotnet/tools"
 WORKDIR /src
 COPY ["BookAuthorCRUD/BookAuthorCRUD.API.csproj", "BookAuthorCRUD/"]
 COPY ["BookAuthorCRUD.Application/BookAuthorCRUD.Application.csproj", "BookAuthorCRUD.Application/"]
@@ -15,8 +17,10 @@ COPY ["BookAuthorCRUD.Infrastructure.Persistence/BookAuthorCRUD.Infrastructure.P
 COPY ["BookAuthorCRUD.Test/BookAuthorCRUD.Test.csproj", "BookAuthorCRUD.Test/"]
 RUN dotnet restore "BookAuthorCRUD/BookAuthorCRUD.API.csproj"
 COPY . .
+
 WORKDIR "/src/BookAuthorCRUD"
 RUN dotnet build "BookAuthorCRUD.API.csproj" -c Release -o /app/build
+RUN dotnet ef database update
 
 FROM build AS publish
 RUN dotnet publish "BookAuthorCRUD.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
