@@ -14,6 +14,7 @@ namespace BookAuthorCRUD.Domain.Entities
         public Genre Genre { get; private set; }
         public IReadOnlyCollection<BookAuthor> Authors => _bookAuthors;
 
+        public Book() { }
         private Book(
             Guid id,
             string title,
@@ -46,18 +47,18 @@ namespace BookAuthorCRUD.Domain.Entities
         }
 
         public void Update(
-            string title,
-            string sypnosis,
-            DateTime releaseDate,
-            string publisher,
-            Guid genreId
+            string? title = null,
+            string? sypnosis = null,
+            DateTime releaseDate = default,
+            string? publisher = null,
+            Guid? genreId = null
         )
         {
-            Title = title;
-            Sypnosis = sypnosis;
+            Title = title ?? Title;
+            Sypnosis = sypnosis ?? Sypnosis;
             ReleaseDate = releaseDate;
-            Publisher = publisher;
-            GenreId = genreId;
+            Publisher = publisher??Publisher;
+            GenreId = genreId??GenreId;
         }
 
         public void AddAuthor(BookAuthor bookAuthor)

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IAuthorRequest } from '../interfaces/Author/IAuthorRequest';
 import { IAuthorResponse } from '../interfaces/Author/IAuthorResponse';
 import { IServices } from '../interfaces/services/IServices';
-import { axiosConfig } from './axios.config';
+import { axiosConfig } from '../helpers/axios.config';
 
 @Injectable({
   providedIn: 'root',

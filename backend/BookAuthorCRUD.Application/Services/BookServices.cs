@@ -2,10 +2,13 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Book;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Events.Book;
+using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using LanguageExt;
 using LanguageExt.Common;
+using MediatR;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -17,8 +20,9 @@ public class BookServices : IBookService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IValidator<BookRequest> _bookValidator;
+    private readonly IPublisher _publisher;
 
-    public BookServices(IBookRepository bookRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<BookRequest> bookValidator, IAuthorRepository authorRepository, IBookAuthorRepository bookAuthorRepository)
+    public BookServices(IBookRepository bookRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<BookRequest> bookValidator, IAuthorRepository authorRepository, IBookAuthorRepository bookAuthorRepository, IPublisher publisher)
     {
         _bookRepository = bookRepository;
         _unitOfWork = unitOfWork;
@@ -26,6 +30,7 @@ public class BookServices : IBookService
         _bookValidator = bookValidator;
         _authorRepository = authorRepository;
         _bookAuthorRepository = bookAuthorRepository;
+        _publisher = publisher;
     }
 
     public async Task<Result<BookResponse>> Add(BookRequest bookRequest)
@@ -52,7 +57,7 @@ public class BookServices : IBookService
             var authorsId = await _authorRepository.ExistAuthor(bookRequest.AuthorsId);
 
             if (authorsId.Count == 0)
-                throw new Exception("Authors not found");
+                throw new NotFoundException("Authors not found",bookRequest.AuthorsId);
 
             authorsId
                 .Select(authorId => BookAuthor.Create(authorId, book.Id))
@@ -64,6 +69,8 @@ public class BookServices : IBookService
 
         await _unitOfWork.SaveChangesAsync();
 
+        await _publisher.Publish(new BookCreatedEvent(book));
+
         return new Result<BookResponse>(_mapper.Map<BookResponse>(book));
     }
 
@@ -72,16 +79,21 @@ public class BookServices : IBookService
         var book = await _bookRepository.GetById(id);
 
         if (book is null)
-            throw new Exception("Book not found");
+            throw new NotFoundException("Book not found", id);
 
         _bookRepository.Delete(book);
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _publisher.Publish(new BookDeletedEvent(book));
     }
 
     public async Task<BookResponse> GetByIdAsync(Guid id)
     {
         var book = await _bookRepository.GetById(id);
+
+        if (book is null)
+            throw new NotFoundException("Book not found", id);
 
         return _mapper.Map<BookResponse>(book);
     }
@@ -116,7 +128,7 @@ public class BookServices : IBookService
             var authorsId = await _authorRepository.ExistAuthor(bookRequest.AuthorsId);
 
             if (authorsId.Count == 0)
-                throw new Exception("Authors not found");
+                throw new NotFoundException("Authors not found",bookRequest.AuthorsId);
 
             await _bookAuthorRepository.DeleteAuthors(Id);
 
@@ -129,7 +141,7 @@ public class BookServices : IBookService
         var book = await _bookRepository.GetById(Id);
 
         if (book is null)
-            throw new Exception("Book not found");
+            throw new NotFoundException("Book not found",Id);
 
         book.Update(
             bookRequest.Title,

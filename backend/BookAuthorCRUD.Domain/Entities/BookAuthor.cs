@@ -10,6 +10,10 @@ namespace BookAuthorCRUD.Domain.Entities
         public Guid BookId { get; private set; } = Guid.Empty;
         public Book Book { get; private set; }
 
+        public BookAuthor()
+        {
+
+        }
         private BookAuthor(Guid id,Guid authorId, Guid bookId)
         {
             Id = id;

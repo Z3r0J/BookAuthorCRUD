@@ -1,5 +1,6 @@
 ﻿using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Application.Services;
+using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -13,6 +14,7 @@ public static class ServiceRegister
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblyContaining(typeof(ServiceRegister));
+            config.NotificationPublisher = new TaskWhenAllPublisher();
             
         });
 

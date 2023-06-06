@@ -13,6 +13,8 @@ public sealed class Author : AuditableBaseEntity
     public DateTime BirthDate { get; private set; } = DateTime.UtcNow;
     public IReadOnlyCollection<BookAuthor> Books => _bookAuthors;
 
+    public Author() { }
+
     private Author(
         Guid id,
         string firstName,
@@ -50,17 +52,17 @@ public sealed class Author : AuditableBaseEntity
     }
 
     public void Update(
-        string firstName,
-        string lastName,
-        string address,
-        string email,
-        DateTime birthDate
+        string? firstName = null,
+        string? lastName =null,
+        string? address=null,
+        string? email=null,
+        DateTime birthDate = default
     )
     {
-        FirstName = firstName;
-        LastName = lastName;
-        Address = address;
-        Email = email;
+        FirstName = firstName ?? FirstName;
+        LastName = lastName??LastName;
+        Address = address??Address;
+        Email = email??Email;
         BirthDate = birthDate;
     }
 }

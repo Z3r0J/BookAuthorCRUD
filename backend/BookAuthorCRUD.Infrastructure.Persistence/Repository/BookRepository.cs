@@ -29,7 +29,7 @@ public class BookRepository : IBookRepository
             .Include(x => x.Authors)
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
-            .AsNoTracking()
+            .AsSplitQuery()
             .ToListAsync(cancellationToken);
 
     public async Task<Book?> GetById(Guid id, CancellationToken cancellationToken = default) =>
@@ -38,6 +38,7 @@ public class BookRepository : IBookRepository
             .Include(x => x.Authors)
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
+            .AsSplitQuery()
             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 
     public async Task<List<Book>> GetBooksByAuthorId(
@@ -50,6 +51,7 @@ public class BookRepository : IBookRepository
             .ThenInclude(x => x.Author)
             .Include(x => x.Genre)
             .Where(x => x.Authors.Any(x => x.AuthorId == authorId))
+            .AsSplitQuery()
             .ToListAsync(cancellationToken);
 
     public void Update(Book book) => _applicationContext.Set<Book>().Update(book);

@@ -2,10 +2,13 @@
 using BookAuthorCRUD.Application.Interface;
 using BookAuthorCRUD.Contract.DTOs.Author;
 using BookAuthorCRUD.Domain.Entities;
+using BookAuthorCRUD.Domain.Events.Author;
+using BookAuthorCRUD.Domain.Exception;
 using BookAuthorCRUD.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
 using LanguageExt.Common;
+using MediatR;
 
 namespace BookAuthorCRUD.Application.Services;
 
@@ -15,13 +18,15 @@ public class AuthorService : IAuthorService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IValidator<AuthorRequest> _authorValidator;
+    private readonly IPublisher _publisher;
 
-    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<AuthorRequest> authorValidator)
+    public AuthorService(IAuthorRepository authorRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<AuthorRequest> authorValidator, IPublisher publisher)
     {
         _authorRepository = authorRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _authorValidator = authorValidator;
+        _publisher = publisher;
     }
 
     public async Task<Result<AuthorResponse>> Add(AuthorRequest authorRequest)
@@ -48,24 +53,31 @@ public class AuthorService : IAuthorService
 
         await _unitOfWork.SaveChangesAsync();
 
+        await _publisher.Publish(new AuthorCreatedEvent(author));
+
         return new Result<AuthorResponse>(_mapper.Map<AuthorResponse>(author));
     }
 
     public async Task Delete(Guid id)
     {
-        var book = await _authorRepository.GetById(id);
+        var author = await _authorRepository.GetById(id);
 
-        if (book is null)
-            throw new Exception("Author was not found");
+        if (author is null)
+            throw new NotFoundException("Author was not found",id);
 
-        _authorRepository.Delete(book);
+        _authorRepository.Delete(author);
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _publisher.Publish(new AuthorDeletedEvent(author));
     }
 
     public async Task<AuthorResponse> GetByIdAsync(Guid id)
     {
         var author = await _authorRepository.GetById(id);
+
+        if (author is null)
+            throw new NotFoundException("Author was not found",id);
 
         return _mapper.Map<AuthorResponse>(author);
     }
@@ -77,9 +89,9 @@ public class AuthorService : IAuthorService
         return _mapper.Map<List<AuthorResponse>>(authors);
     }
 
-    public async Task<Result<bool>> Update(Guid Id, AuthorRequest bookRequest)
+    public async Task<Result<bool>> Update(Guid Id, AuthorRequest authorRequest)
     {
-        var result = await _authorValidator.ValidateAsync(bookRequest);
+        var result = await _authorValidator.ValidateAsync(authorRequest);
 
         if(!result.IsValid)
         {
@@ -91,14 +103,14 @@ public class AuthorService : IAuthorService
         var author = await _authorRepository.GetById(Id);
 
         if (author is null)
-            return new Result<bool>(new ValidationException("Author was not found"));
+            throw new NotFoundException("Author was not found", authorRequest);
 
         author.Update(
-            bookRequest.FirstName,
-            bookRequest.LastName,
-            bookRequest.Address,
-            bookRequest.Email,
-            bookRequest.BirthDate
+            authorRequest.FirstName,
+            authorRequest.LastName,
+            authorRequest.Address,
+            authorRequest.Email,
+            authorRequest.BirthDate
             );
 
         _authorRepository.Update(author);

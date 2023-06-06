@@ -11,6 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,8 +29,8 @@
   <ItemGroup>
     <ProjectReference Include="..\BookAuthorCRUD.Application\BookAuthorCRUD.Application.csproj" />
     <ProjectReference Include="..\BookAuthorCRUD.Contract\BookAuthorCRUD.Contract.csproj" />
+    <ProjectReference Include="..\BookAuthorCRUD.Domain\BookAuthorCRUD.Domain.csproj" />
     <ProjectReference Include="..\BookAuthorCRUD.Infrastructure.Persistence\BookAuthorCRUD.Infrastructure.Persistence.csproj" />
-    <ProjectReference Include="..\BookAuthorCRUD.Test\BookAuthorCRUD.Test.csproj" />
   </ItemGroup>
 
 </Project>

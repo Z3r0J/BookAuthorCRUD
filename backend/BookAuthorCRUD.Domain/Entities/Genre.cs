@@ -13,6 +13,8 @@ namespace BookAuthorCRUD.Domain.Entities
         public string Name { get; private set; } = string.Empty;
         public IReadOnlyCollection<Book> Books => _books;
 
+        public Genre() { }
+
         private Genre(Guid id,string name)
         {
             Id = id;
@@ -26,9 +28,9 @@ namespace BookAuthorCRUD.Domain.Entities
             return genre;
         }
 
-        public void Update(string name)
+        public void Update(string? name =null)
         {
-            Name = name;
+            Name = name??Name;
         }
 
         public void AddBooks(Book book)

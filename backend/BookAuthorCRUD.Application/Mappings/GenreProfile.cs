@@ -17,6 +17,8 @@ public class GenreProfile : Profile
     {
         CreateMap<GenreResponse, Genre>()
             .ForMember(x => x.Books, opt => opt.Ignore())
+            .ForMember(x => x.CreatedAt, opt => opt.Ignore())
+            .ForMember(x => x.UpdatedAt, opt => opt.Ignore())
             .ReverseMap()
             .ForMember(x=>x.BookCount,opt=>opt.MapFrom(x=>x.Books.Count));
 
