@@ -1,0 +1,110 @@
+<div class="mat-toolbar mat-primary p-2">
+  <h4 mat-dialog-title class="text-light" *ngIf="!data.isEdit">
+    <mat-icon class="me-2 position-relative" style="top: 0.2em">add</mat-icon>
+    Create a new Book
+  </h4>
+  <h4 mat-dialog-title class="text-light" *ngIf="data.isEdit">
+    <mat-icon class="me-2 position-relative" style="top: 0.2em">edit</mat-icon>
+    Edit a Book
+  </h4>
+</div>
+<div mat-dialog-content *ngIf="genres.length === 0 || authors.length === 0">
+  <div class="d-flex justify-content-center h-50">
+    <mat-icon style="font-size: 48px; height: 48px; width: 48px; color: #005f7f"
+      >info</mat-icon
+    >
+  </div>
+  <p class="text-center">You need to create a genre and an author first.</p>
+</div>
+<div
+  mat-dialog-content
+  class="p-3"
+  *ngIf="genres.length > 0 && authors.length > 0"
+>
+  <p>Fill out the form.</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-100">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error *ngIf="hasError('title')">
+        {{ getError("title") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Sypnosis</mat-label>
+      <textarea
+        matInput
+        formControlName="sypnosis"
+        placeholder="Ex: Harry Potter show us the life of a young wizard."
+      ></textarea>
+      <mat-error *ngIf="hasError('sypnosis')">
+        {{ getError("sypnosis") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100 mb-1">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a release date"
+        formControlName="releaseDate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('releaseDate')">
+        {{ getError("releaseDate") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Publisher</mat-label>
+      <input matInput formControlName="publisher" />
+      <mat-error *ngIf="hasError('publisher')">
+        {{ getError("publisher") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Genres</mat-label>
+      <mat-select formControlName="genreId">
+        <mat-option value="">Select the Genres</mat-option>
+        <mat-option *ngFor="let genre of genres" [value]="genre.id">{{
+          genre.name
+        }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('genreId')">
+        {{ getError("genreId") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Authors</mat-label>
+      <mat-select multiple formControlName="authorsId">
+        <mat-option value="" selected>Select the Authors</mat-option>
+        <mat-option *ngFor="let author of authors" [value]="author.id">
+          {{ author.firstName }} {{ author.lastName }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="hasError('authorsId')">
+        {{ getError("authorsId") }}
+      </mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="p-2">
+      <button
+        mat-raised-button
+        type="submit"
+        cdkFocusInitial
+        class="btn btn-success me-2"
+      >
+        Save
+      </button>
+      <button
+        mat-raised-button
+        class="btn btn-danger me-2"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

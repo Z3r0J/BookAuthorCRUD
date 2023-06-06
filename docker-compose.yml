@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+  bookauthorcrud.api:
+    image: ${DOCKER_REGISTRY-}bookauthorcrudapi
+    build:
+      context: ./backend
+      dockerfile: BookAuthorCRUD/Dockerfile
+    environment:
+      - ASPNETCORE_USEINMEMORY=null
+      - ASPNETCORE_CONNECTIONSTRING=Server=bookauthorcrud.mssql.somee.com;Database=bookauthorcrud;User ID=BookAuthorCRUD_SQLLogin_1;Password=en48fk3pdo;Trusted_Connection=false;Encrypt=false;MultipleActiveResultSets=true;
+    ports:
+      - "5286:80"
+      - "5001:443"
+  bookauthorcrud.frontend:
+    image: ${DOCKER_REGISTRY-}bookauthorcrudfrontend
+    depends_on:
+      - bookauthorcrud.api
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"

@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-toolbar.mat-primary {
+  background: linear-gradient(90deg, #005f7f, #5fd0df 133.7%);
+}
+
+.input {
+  box-shadow: none !important;
+}
+.input:hover {
+  border: 1.5px solid #5fd0df !important;
+  box-shadow: none !important;
+}
